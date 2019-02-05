@@ -1,0 +1,6 @@
+1. bubble sort
+2. binary search in array(find index of element in array of distinct values)
+3. quick sort or merge sort
+deadline 08 feb 2019
+develop all tasks in different branches, then merge in master
+link on github for mentor
