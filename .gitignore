@@ -1,0 +1,8 @@
+log
+.idea
+.idea_modules
+idea.bat
+out
+target
+*.iml
+file_storage
