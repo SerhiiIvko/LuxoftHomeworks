@@ -11,9 +11,7 @@
     <modules>
         <module>hw04February2019</module>
     </modules>
-
     <build>
-        <finalName>mini-pet-servlet</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
