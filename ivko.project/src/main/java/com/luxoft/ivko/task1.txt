@@ -1,0 +1,5 @@
+1. Write javadocs for methods.
+2. Complete AdminMenu.
+3. Complete logic for products.
+4. Complete order logic.
+5. Create services for products and orders.
