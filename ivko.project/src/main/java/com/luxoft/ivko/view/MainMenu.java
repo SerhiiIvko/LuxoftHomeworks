@@ -1,6 +1,6 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.appProperties.ConsoleOutputContainer;
+import com.luxoft.ivko.appProperties.*;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,7 +13,7 @@ public class MainMenu {
 
     public void showMenu() throws IOException {
         boolean isRunning = true;
-        while  (isRunning) {
+        while (isRunning) {
             ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MAIN_MENU);
             switch (reader.readLine()) {
                 case "1":

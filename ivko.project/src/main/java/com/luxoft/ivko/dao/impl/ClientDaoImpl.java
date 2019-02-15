@@ -10,7 +10,12 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public boolean saveClient(Client client) {
-        return false;
+        return true;
+    }
+
+    @Override
+    public boolean modifyClientCredentials(Client client){
+        return true;
     }
 
     @Override
@@ -26,5 +31,10 @@ public class ClientDaoImpl implements ClientDao {
     @Override
     public List<Client> getAllClients() {
         return null;
+    }
+
+    @Override
+    public void removeClient(BigDecimal id){
+
     }
 }

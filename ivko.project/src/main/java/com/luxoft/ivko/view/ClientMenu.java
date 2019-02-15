@@ -1,6 +1,6 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.appProperties.ConsoleOutputContainer;
+import com.luxoft.ivko.appProperties.*;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
 
@@ -15,8 +15,8 @@ public class ClientMenu {
     public void show() throws IOException {
         boolean isRunning = true;
         ConsoleOutputContainer.printMessage(ConsoleOutputContainer.CLIENT_MENU);
-        while (isRunning){
-            switch (reader.readLine()){
+        while (isRunning) {
+            switch (reader.readLine()) {
                 case "1":
 
                     break;
@@ -31,13 +31,13 @@ public class ClientMenu {
                     break;
                 case "5":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);
-                    isRunning=false;
+                    isRunning = false;
                     break;
                 case "0":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);
                     System.exit(0);
-                    default:
-                        ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
+                default:
+                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
             }
         }
     }

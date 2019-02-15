@@ -1,6 +1,6 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.appProperties.ConsoleOutputContainer;
+import com.luxoft.ivko.appProperties.*;
 import com.luxoft.ivko.domain.Client;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
@@ -49,7 +49,7 @@ public class AdminMenu {
                     break;
                 case "5":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);
-                    isRunning=false;
+                    isRunning = false;
                     break;
                 case "0":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);

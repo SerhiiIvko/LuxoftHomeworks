@@ -2,23 +2,24 @@ package com.luxoft.ivko.appProperties;
 
 public class ConsoleOutputContainer {
     public static final String MAIN_MENU =
-                      "1. Admin\n"
+            "1. Admin\n"
                     + "2. Client\n"
                     + "0. Exit";
     public static final String ADMIN_MENU =
-              "1. Add client\n"
-            + "2. Modify client\n"
-            + "3. Remove client\n"
-            + "4. List all clients\n"
-            + "5. Back to main menu\n"
-            + "0. Exit";
+            "1. Add client\n"
+                    + "2. Modify client\n"
+                    + "3. Remove client\n"
+                    + "4. List all clients\n"
+                    + "5. Back to main menu\n"
+                    + "0. Exit";
     public static final String CLIENT_MENU =
-              "1. Add product in basket\n"
-            + "2. Remove product from basket\n"
-            + "3. Make order\n"
-            + "4. Pay order\n"
-            + "5. Back to main menu\n"
-            + "0. Exit";
+            "1. Show all products\n"
+                    + "2. Add product in basket\n"
+                    + "3. Remove product from basket\n"
+                    + "4. Make order\n"
+                    + "5. Pay order\n"
+                    + "6. Back to main menu\n"
+                    + "0. Exit";
     public static final String SHOW_ADMIN_MENU = "Show admin menu";
     public static final String SHOW_CLIENT_MENU = "Show client menu";
     public static final String SHOW_EXIT_MESSAGE = "You successfully quit program";
@@ -37,7 +38,7 @@ public class ConsoleOutputContainer {
     public static final String SHOW_ALL_PRODUCTS = "Show all products";
 
 
-    public static void printMessage(String message){
+    public static void printMessage(String message) {
         System.out.println(message);
     }
 }

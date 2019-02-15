@@ -7,9 +7,15 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
+
     @Override
     public boolean saveProduct(Product product) {
         return false;
+    }
+
+    @Override
+    public boolean updateProduct(Product product){
+        return true;
     }
 
     @Override
@@ -18,12 +24,12 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public Product getProductByEmail(String email) {
+    public List<Product> getAllProducts() {
         return null;
     }
 
     @Override
-    public List<Product> getAllProducts() {
-        return null;
+    public void removeProduct(BigDecimal id) {
+
     }
 }

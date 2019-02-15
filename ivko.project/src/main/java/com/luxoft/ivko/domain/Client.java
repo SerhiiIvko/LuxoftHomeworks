@@ -11,23 +11,12 @@ public class Client {
     private String email;
     private int age;
 
-    /**
-     * Class constructor.
-     *
-     * @param  name  an absolute URL giving the base location of the image
-     * @param  surname the location of the image, relative to the url argument
-     * @param  phone the location of the image, relative to the url argument
-     * @return      new Client
-     */
     public Client(String name, String surname, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
     }
 
-    /**
-     * Class constructor.
-     */
     public Client(String name, String surname, String phone, String email, int age) {
         this.name = name;
         this.surname = surname;
@@ -81,7 +70,7 @@ public class Client {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return  getAge() == client.getAge() &&
+        return getAge() == client.getAge() &&
                 getName().equals(client.getName()) &&
                 getSurname().equals(client.getSurname()) &&
                 getPhone().equals(client.getPhone()) &&
@@ -95,13 +84,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", phone='" + phone + '\'' +
-                ", email='" + email + '\'' +
-                ", age=" + age +
-                '}';
+        return "Client credentials: "
+                + "name: " + name
+                + "; surname: " + surname
+                + "; phone: " + phone;
     }
 }
