@@ -6,7 +6,8 @@ public interface ClientService {
 
     //TODO javadocs for methods
 
-    void createClient(String name, String surname, String phone);
+    Client createClient(String name, String surname, String phone);
+    void modifyClient(Client client, String name, String surname, String phone);
     void deleteClient(Client client);
 
 

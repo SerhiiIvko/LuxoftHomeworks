@@ -1,6 +1,6 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.dao.appProperties.ConsoleOutputContainer;
+import com.luxoft.ivko.appProperties.ConsoleOutputContainer;
 
 import java.io.BufferedReader;
 import java.io.IOException;

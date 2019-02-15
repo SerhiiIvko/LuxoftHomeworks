@@ -1,21 +1,33 @@
 package com.luxoft.ivko.domain;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Client {
-    private long id;
+    private BigDecimal id;
     private String name;
     private String surname;
     private String phone;
     private String email;
     private int age;
 
+    /**
+     * Class constructor.
+     *
+     * @param  name  an absolute URL giving the base location of the image
+     * @param  surname the location of the image, relative to the url argument
+     * @param  phone the location of the image, relative to the url argument
+     * @return      new Client
+     */
     public Client(String name, String surname, String phone) {
         this.name = name;
         this.surname = surname;
         this.phone = phone;
     }
 
+    /**
+     * Class constructor.
+     */
     public Client(String name, String surname, String phone, String email, int age) {
         this.name = name;
         this.surname = surname;

@@ -1,6 +1,6 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.dao.appProperties.ConsoleOutputContainer;
+import com.luxoft.ivko.appProperties.ConsoleOutputContainer;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
 
@@ -26,11 +26,18 @@ public class ClientMenu {
                 case "3":
 
                     break;
-                case "0":
-                    isRunning = false;
+                case "4":
+
                     break;
+                case "5":
+                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);
+                    isRunning=false;
+                    break;
+                case "0":
+                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);
+                    System.exit(0);
                     default:
-                        System.out.println("Incorrect input");
+                        ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
             }
         }
     }
