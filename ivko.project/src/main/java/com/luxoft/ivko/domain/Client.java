@@ -25,6 +25,14 @@ public class Client {
         this.age = age;
     }
 
+    public BigDecimal getId() {
+        return id;
+    }
+
+    public void setId(BigDecimal id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }

@@ -7,6 +7,7 @@ public class Order {
     private BigDecimal id;
     private Client client;
     private List<Product> productList;
+    private double amount;
 
     public Order(Client client, List<Product> productList) {
         this.client = client;

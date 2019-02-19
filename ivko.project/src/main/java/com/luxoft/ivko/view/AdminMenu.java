@@ -8,6 +8,7 @@ import com.luxoft.ivko.service.impl.ClientServiceImpl;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 
 public class AdminMenu {
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
@@ -41,11 +42,13 @@ public class AdminMenu {
                     break;
                 case "3":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.REMOVE_CLIENT);
-
+                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.INPUT_CLIENT_ID_MESSAGE);
+                    BigDecimal id = new BigDecimal(reader.readLine());
+                    clientService.deleteClient(id);
                     break;
                 case "4":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_ALL_CLIENTS);
-
+                    clientService.showAllClients();
                     break;
                 case "5":
                     ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);

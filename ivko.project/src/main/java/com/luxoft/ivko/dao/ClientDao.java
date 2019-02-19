@@ -45,5 +45,5 @@ public interface ClientDao {
      *
      * @param id  client's id for correctly removing
      */
-    void removeClient(BigDecimal id);
+    boolean removeClient(BigDecimal id);
 }

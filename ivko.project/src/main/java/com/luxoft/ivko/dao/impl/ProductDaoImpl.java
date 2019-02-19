@@ -14,7 +14,7 @@ public class ProductDaoImpl implements ProductDao {
     }
 
     @Override
-    public boolean updateProduct(Product product){
+    public boolean updateProduct(Product product) {
         return true;
     }
 
