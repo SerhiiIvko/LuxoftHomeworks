@@ -13,6 +13,9 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public boolean saveClient(Client client) {
+        if (client.getPhone().equals(clients.entrySet().contains(client.getPhone()))){
+            System.out.println();
+        }
         generator = generator.add(new BigDecimal(1));
         client.setId(generator);
         clients.put(generator, client);
@@ -21,7 +24,7 @@ public class ClientDaoImpl implements ClientDao {
 
     @Override
     public boolean modifyClientCredentials(Client client) {
-
+        Client updated = clients.get(client);
         return true;
     }
 

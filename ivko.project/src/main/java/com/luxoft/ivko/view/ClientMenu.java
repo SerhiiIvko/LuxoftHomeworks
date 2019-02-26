@@ -1,6 +1,7 @@
 package com.luxoft.ivko.view;
 
 import com.luxoft.ivko.appProperties.*;
+import com.luxoft.ivko.domain.Client;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
 
@@ -11,14 +12,28 @@ import java.io.InputStreamReader;
 public class ClientMenu {
     private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private final ClientService clientService = new ClientServiceImpl();
+    private Client client;
 
     public void show() throws IOException {
         boolean isRunning = true;
-        ConsoleOutputContainer.printMessage(ConsoleOutputContainer.CLIENT_MENU);
+        ConstantsContainer.printMessage(ConstantsContainer.CLIENT_MENU);
         while (isRunning) {
             switch (reader.readLine()) {
                 case "1":
-
+                    ConstantsContainer.printMessage(ConstantsContainer.ADD_CLIENT_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_NAME_MESSAGE);
+                    String name = reader.readLine();
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+                    String surname = reader.readLine();
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+                    String email = reader.readLine();
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+                    String password = reader.readLine();
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_PHONE_MESSAGE);
+                    String phone = reader.readLine();
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_PHONE_MESSAGE);
+                    int age = Integer.parseInt(reader.readLine());
+                    client = clientService.createClient(name, surname, email, password, phone, age);
                     break;
                 case "2":
 
@@ -30,14 +45,32 @@ public class ClientMenu {
 
                     break;
                 case "5":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);
+
+                    break;
+                case "6":
+
+                    break;
+                case "7":
+
+                    break;
+                case "8":
+
+                    break;
+                case "9":
+
+                    break;
+                case "10":
+
+                    break;
+                case "11":
+                    ConstantsContainer.printMessage(ConstantsContainer.BACK_TO_MAIN_MENU);
                     isRunning = false;
                     break;
                 case "0":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_EXIT_MESSAGE);
                     System.exit(0);
                 default:
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_DEFAULT_ERROR_MESSAGE);
             }
         }
     }

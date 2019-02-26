@@ -18,48 +18,64 @@ public class AdminMenu {
     public void show() throws IOException {
         boolean isRunning = true;
         while (isRunning) {
-            ConsoleOutputContainer.printMessage(ConsoleOutputContainer.ADMIN_MENU);
+            ConstantsContainer.printMessage(ConstantsContainer.ADMIN_MENU);
             switch (reader.readLine()) {
                 case "1":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.ADD_CLIENT_MESSAGE);
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.INPUT_CLIENT_NAME_MESSAGE);
-                    String name = reader.readLine();
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.INPUT_CLIENT_SURNAME_MESSAGE);
-                    String surname = reader.readLine();
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.INPUT_CLIENT_PHONE_MESSAGE);
-                    String phone = reader.readLine();
-                    client = clientService.createClient(name, surname, phone);
+//                    ConstantsContainer.printMessage(ConstantsContainer.ADD_CLIENT_MESSAGE);
+//                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_NAME_MESSAGE);
+//                    String name = reader.readLine();
+//                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+//                    String surname = reader.readLine();
+//                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+//                    String email = reader.readLine();
+//                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_SURNAME_MESSAGE);
+//                    String password = reader.readLine();
+//                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_PHONE_MESSAGE);
+//                    String phone = reader.readLine();
+//                    client = clientService.createClient(name, surname, phone);
                     break;
                 case "2":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MODIFY_CLIENT);
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MODIFY_CLIENT_NAME_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.MODIFY_CLIENT);
+                    ConstantsContainer.printMessage(ConstantsContainer.MODIFY_CLIENT_NAME_MESSAGE);
                     String newName = reader.readLine();
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MODIFY_CLIENT_SURNAME_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.MODIFY_CLIENT_SURNAME_MESSAGE);
                     String newSurname = reader.readLine();
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MODIFY_CLIENT_PHONE_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.MODIFY_CLIENT_PHONE_MESSAGE);
                     String newPhone = reader.readLine();
                     clientService.modifyClient(client, newName, newSurname, newPhone);
                     break;
                 case "3":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.REMOVE_CLIENT);
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.INPUT_CLIENT_ID_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.REMOVE_CLIENT);
+                    ConstantsContainer.printMessage(ConstantsContainer.INPUT_CLIENT_ID_MESSAGE);
                     BigDecimal id = new BigDecimal(reader.readLine());
                     clientService.deleteClient(id);
                     break;
                 case "4":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_ALL_CLIENTS);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_ALL_CLIENTS);
                     clientService.showAllClients();
                     break;
                 case "5":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.BACK_TO_MAIN_MENU);
+
+                    break;
+                case "6":
+
+                    break;
+                case "7":
+
+                    break;
+                case "8":
+
+                    break;
+                case "9":
+                    ConstantsContainer.printMessage(ConstantsContainer.BACK_TO_MAIN_MENU);
                     isRunning = false;
                     break;
                 case "0":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_EXIT_MESSAGE);
                     System.exit(0);
                     break;
                 default:
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_DEFAULT_ERROR_MESSAGE);
             }
         }
     }

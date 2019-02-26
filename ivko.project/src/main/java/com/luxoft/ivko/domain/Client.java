@@ -9,6 +9,7 @@ public class Client {
     private String surname;
     private String phone;
     private String email;
+    private String password;
     private int age;
 
     public Client(String name, String surname, String phone) {
@@ -17,7 +18,8 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client(String name, String surname, String phone, String email, int age) {
+    public Client(String name, String password, String surname, String phone, String email, int age) {
+        this.password = password;
         this.name = name;
         this.surname = surname;
         this.phone = phone;

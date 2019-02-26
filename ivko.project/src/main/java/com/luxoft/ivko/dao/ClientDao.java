@@ -24,14 +24,14 @@ public interface ClientDao {
     /**
      * Get client from storage by id
      *
-     * @param id  client as object from storage
+     * @param id client as object from storage
      */
     Client getClientById(BigDecimal id);
 
     /**
      * Get client from storage by email
      *
-     * @param email  client as object from storage
+     * @param email client as object from storage
      */
     Client getClientByEmail(String email);
 
@@ -43,7 +43,7 @@ public interface ClientDao {
     /**
      * Remove client from storage by id
      *
-     * @param id  client's id for correctly removing
+     * @param id client's id for correctly removing
      */
     boolean removeClient(BigDecimal id);
 }

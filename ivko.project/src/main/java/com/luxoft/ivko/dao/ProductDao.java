@@ -24,7 +24,7 @@ public interface ProductDao {
     /**
      * Get product from storage by id
      *
-     * @param id  product as object from storage
+     * @param id product as object from storage
      */
     Product getProductById(BigDecimal id);
 
@@ -36,7 +36,7 @@ public interface ProductDao {
     /**
      * Remove client from storage by id
      *
-     * @param id  client's id for correctly removing
+     * @param id client's id for correctly removing
      */
     void removeProduct(BigDecimal id);
 }

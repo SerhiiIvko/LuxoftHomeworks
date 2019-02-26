@@ -14,7 +14,7 @@ public interface ClientService {
      * @param phone   client's phone number
      * @return new Client
      */
-    Client createClient(String name, String surname, String phone);
+    Client createClient(String name, String password, String surname, String phone, String email, int age);
 
     /**
      * Modify client parameters

@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
+    private final ProductDao productDao = new ProductDaoImpl();
 
     @Override
     public boolean saveProduct(Product product) {

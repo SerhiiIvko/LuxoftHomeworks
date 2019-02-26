@@ -14,22 +14,22 @@ public class MainMenu {
     public void showMenu() throws IOException {
         boolean isRunning = true;
         while (isRunning) {
-            ConsoleOutputContainer.printMessage(ConsoleOutputContainer.MAIN_MENU);
+            ConstantsContainer.printMessage(ConstantsContainer.MAIN_MENU);
             switch (reader.readLine()) {
                 case "1":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_ADMIN_MENU);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_ADMIN_MENU);
                     adminMenu.show();
                     break;
                 case "2":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_CLIENT_MENU);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_CLIENT_MENU);
                     clientMenu.show();
                     break;
                 case "0":
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_EXIT_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_EXIT_MESSAGE);
                     isRunning = false;
                     break;
                 default:
-                    ConsoleOutputContainer.printMessage(ConsoleOutputContainer.SHOW_DEFAULT_ERROR_MESSAGE);
+                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_DEFAULT_ERROR_MESSAGE);
             }
         }
     }
