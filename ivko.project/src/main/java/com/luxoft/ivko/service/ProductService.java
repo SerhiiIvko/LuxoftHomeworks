@@ -2,8 +2,6 @@ package com.luxoft.ivko.service;
 
 import com.luxoft.ivko.domain.Product;
 
-import java.math.BigDecimal;
-
 public interface ProductService {
 
     /**
@@ -14,7 +12,7 @@ public interface ProductService {
      * @param productType product type
      * @return new Product
      */
-    Product createProduct(String name, BigDecimal price, String productType);
+    Product createProduct(String name, Long price, String productType);
 
     /**
      * Modify product parameters
@@ -23,12 +21,12 @@ public interface ProductService {
      * @param newName  new name for replace old name
      * @param newPrice new price for replace old price
      */
-    void modifyProduct(Product product, String newName, BigDecimal newPrice);
+    void modifyProduct(Product product, String newName, Long newPrice);
 
     /**
      * Delete product
      *
      * @param id product id for correctly deleting
      */
-    void deleteProduct(BigDecimal id);
+    void deleteProduct(Long id);
 }

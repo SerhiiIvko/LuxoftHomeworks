@@ -4,13 +4,16 @@ import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Client {
-    private BigDecimal id;
+    private Long id;
     private String name;
     private String surname;
     private String phone;
     private String email;
     private String password;
-    private int age;
+    private String age;
+
+    public Client(){
+    }
 
     public Client(String name, String surname, String phone) {
         this.name = name;
@@ -18,20 +21,20 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client(String name, String password, String surname, String phone, String email, int age) {
-        this.password = password;
+    public Client(String name, String surname,  String email, String password, String phone, String age) {
         this.name = name;
         this.surname = surname;
-        this.phone = phone;
         this.email = email;
+        this.password = password;
+        this.phone = phone;
         this.age = age;
     }
 
-    public BigDecimal getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(BigDecimal id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -67,11 +70,19 @@ public class Client {
         this.email = email;
     }
 
-    public int getAge() {
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
@@ -80,7 +91,7 @@ public class Client {
         if (this == o) return true;
         if (!(o instanceof Client)) return false;
         Client client = (Client) o;
-        return getAge() == client.getAge() &&
+        return getAge().equals(client.getAge()) &&
                 getName().equals(client.getName()) &&
                 getSurname().equals(client.getSurname()) &&
                 getPhone().equals(client.getPhone()) &&

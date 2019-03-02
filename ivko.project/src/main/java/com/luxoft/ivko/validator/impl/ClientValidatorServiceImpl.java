@@ -1,47 +1,85 @@
 package com.luxoft.ivko.validator.impl;
 
-import com.luxoft.ivko.appProperties.ConstantsContainer;
-import com.luxoft.ivko.exception.ValidationException;
 import com.luxoft.ivko.validator.ClientValidatorService;
-import org.apache.commons.lang3.StringUtils;
 
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class ClientValidatorServiceImpl implements ClientValidatorService {
+    private final int maxInputDataLength = 28;
 
     @Override
-    public boolean validateNewClientCredentials(String name, String password, String surname, String phone, String email, int age) {
-        if (StringUtils.isEmpty(email) || (StringUtils.isEmpty(password)) || (StringUtils.isEmpty(phone))
-                || !validateUserEmail(email) || !validateUserPhone(phone) || !validateAge(age)) {
-            throw new ValidationException(ConstantsContainer.VALIDATION_EXCEPTION_MESSAGE);
-        } else {
-            return true;
+    public boolean validateName(String name) {
+        boolean correctName = !(name.trim().isEmpty() || name.length() > maxInputDataLength);
+        if (!correctName) {
+            System.out.println("incorrect name " + name);
         }
+        return correctName;
     }
 
     @Override
-    public boolean validateModifiedClientCredentials(String name, String surname, String phone, String email) {
-        if (StringUtils.isEmpty(name) || (StringUtils.isEmpty(surname))
-                || validateUserEmail(email) || validateUserPhone(phone)) {
-            throw new ValidationException(ConstantsContainer.VALIDATION_EXCEPTION_MESSAGE);
-        } else {
-            return true;
+    public boolean validateSurname(String surname) {
+        boolean correctSurname = !(surname.trim().isEmpty() || surname.length() > maxInputDataLength);
+        if (!correctSurname) {
+            System.out.println("incorrect surname " + surname);
         }
+        return correctSurname;
+    }
+
+    @Override
+    public boolean validatePassword(String password) {
+        boolean correctPasswordLength = password.length() > 6;
+        boolean correctPassword = !(password.trim().isEmpty() || password.length() > maxInputDataLength || !correctPasswordLength);
+        if (correctPassword) {
+            System.out.println("incorrect password");
+        }
+        return correctPassword;
+    }
+
+    @Override
+    public boolean validateEmail(String email) {
+        boolean correctEmail = !(email.trim().isEmpty() || email.length() > maxInputDataLength);
+        if (!correctEmail || !validateUserEmail(email)) {
+            System.out.println("incorrect email " + email);
+        }
+        return (correctEmail && validateUserEmail(email));
+    }
+
+    @Override
+    public boolean validatePhone(String phone) {
+        boolean correctPhoneLength = (phone.length() == 13);
+        boolean correctPhone = !phone.trim().isEmpty() && correctPhoneLength && validateUserPhone(phone);
+        if (!correctPhone) {
+            System.out.println("incorrect phone " + phone);
+        }
+        return (correctPhone);
+    }
+
+    @Override
+    public boolean validateAge(String stringAge) {
+        int age;
+        if (stringAge.trim().isEmpty() || !stringAge.matches("\\d*")) {
+            System.out.println("Age must be positive number!");
+            return false;
+        } else {
+            age = Integer.parseInt(stringAge);
+        }
+        if (!(age > 16 && age < 200)) {
+            System.out.println("Incorrect age " + stringAge);
+        }
+        return (age > 16 && age < 200);
     }
 
     private static boolean validateUserEmail(String email) {
-        String pattern = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-        return (StringUtils.isEmpty(email) || Pattern.compile(pattern).matcher(email).matches());
+        String pattern = "\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
+        return (Pattern.compile(pattern).matcher(email).matches());
     }
 
     private static boolean validateUserPhone(String phone) {
-        String pattern = "^+((?:9[679]|8[035789]|6[789]|5[90]" +
-                "|42|3[578]|2[1-689])|9[0-58]|8[1246]|6[0-6]|5" +
-                "[1-8]|4[013-9]|3[0-469]|2[70]|7|1)(?:\\W*\\d){0,13}\\d$";
-        return (StringUtils.isEmpty(phone) || Pattern.compile(pattern).matcher(phone).matches());
-    }
-
-    private static boolean validateAge(int age) {
-        return age > 16 && age < 200;
+        Pattern pattern = Pattern
+                .compile("^(?:[+][0-9]{2}\\s?[0-9]{3}[-]?[0-9]{3,}|(?:[(][0-9]{3}[)]|" +
+                        "[0-9]{3})\\s*[-]?\\s*[0-9]{3}[-][0-9]{4})(?:\\s*x\\s*[0-9]+)?");
+        Matcher matcher = pattern.matcher(phone);
+        return matcher.matches();
     }
 }

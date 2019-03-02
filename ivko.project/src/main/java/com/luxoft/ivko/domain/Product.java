@@ -6,10 +6,10 @@ import java.util.Objects;
 public class Product {
     private BigDecimal id;
     private String name;
-    private BigDecimal price;
+    private double price;
     private String productType;
 
-    public Product(String name, BigDecimal price, String productType) {
+    public Product(String name, double price, String productType) {
         this.name = name;
         this.price = price;
         this.productType = productType;
@@ -23,11 +23,11 @@ public class Product {
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -46,7 +46,7 @@ public class Product {
         Product product = (Product) o;
         return id.equals(product.id) &&
                 getName().equals(product.getName()) &&
-                getPrice().equals(product.getPrice()) &&
+                getPrice() == product.getPrice() &&
                 getProductType().equals(product.getProductType());
     }
 

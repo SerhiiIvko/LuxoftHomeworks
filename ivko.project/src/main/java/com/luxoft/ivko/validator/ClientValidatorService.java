@@ -5,22 +5,46 @@ public interface ClientValidatorService {
     /**
      * Validate main user credentials
      *
-     * @param name    validation String user name, if it is empty
-     * @param surname validation String user surname, if it is empty
-     * @param phone    validation String user phone number, if it is't correct
-     * @param email    validation String user email, if it is empty or isn't correct
-     * @param password    validation String user password, if it is empty
-     * @param age    validation int user age, if it is't correct
+     * @param name validation String user name
      */
-    boolean validateNewClientCredentials(String name, String password, String surname, String phone, String email, int age);
+    boolean validateName(String name);
+
 
     /**
      * Validate main user credentials
      *
-     * @param name    validation String user name, if it is empty or isn't correct
-     * @param surname validation String user surname, if it is empty
-     * @param phone    validation String user phone number, if it is't correct
-     * @param email    validation String user email, if it is empty or isn't correct
+     * @param surname validation String user surname
      */
-    boolean validateModifiedClientCredentials(String name, String surname, String phone, String email);
+    boolean validateSurname(String surname);
+
+
+    /**
+     * Validate main user credentials
+     *
+     * @param password validation String user password
+     */
+    boolean validatePassword(String password);
+
+    /**
+     * Validate main user credentials
+     *
+     * @param email validation String user email
+     */
+    boolean validateEmail(String email);
+
+
+    /**
+     * Validate main user credentials
+     *
+     * @param phone validation String user phone number
+     */
+    boolean validatePhone(String phone);
+
+
+    /**
+     * Validate main user credentials
+     *
+     * @param age validation int user age
+     */
+    boolean validateAge(String age);
 }

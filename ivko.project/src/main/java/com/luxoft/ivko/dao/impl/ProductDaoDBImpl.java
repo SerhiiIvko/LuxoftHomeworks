@@ -6,9 +6,7 @@ import com.luxoft.ivko.domain.Product;
 import java.math.BigDecimal;
 import java.util.List;
 
-public class ProductDaoImpl implements ProductDao {
-    private final ProductDao productDao = new ProductDaoImpl();
-
+public class ProductDaoDBImpl implements ProductDao {
     @Override
     public boolean saveProduct(Product product) {
         return false;
@@ -16,7 +14,7 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public boolean updateProduct(Product product) {
-        return true;
+        return false;
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.luxoft.ivko.service;
 
-import java.math.BigDecimal;
-
 public interface OrderService {
 
     /**
@@ -9,19 +7,19 @@ public interface OrderService {
      *
      * @param id client's name
      */
-    void showOrderById(BigDecimal id);
+    void showOrderById(Long id);
 
     /**
      * Pay created order by id
      *
      * @param id client's name
      */
-    void payOrder(BigDecimal id);
+    void payOrder(Long id);
 
     /**
      * Cancel created order by id
      *
      * @param id client's name
      */
-    void cancelOrder(BigDecimal id);
+    void cancelOrder(Long id);
 }

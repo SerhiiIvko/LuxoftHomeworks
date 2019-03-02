@@ -1,23 +1,24 @@
 package com.luxoft.ivko.service.impl;
 
+import com.luxoft.ivko.dao.OrderDao;
+import com.luxoft.ivko.dao.impl.OrderDaoDBImpl;
 import com.luxoft.ivko.service.OrderService;
 
-import java.math.BigDecimal;
-
 public class OrderServiceImpl implements OrderService {
+    private OrderDao orderDao = new OrderDaoDBImpl();
 
     @Override
-    public void showOrderById(BigDecimal id) {
+    public void showOrderById(Long id) {
 
     }
 
     @Override
-    public void payOrder(BigDecimal id) {
+    public void payOrder(Long id) {
 
     }
 
     @Override
-    public void cancelOrder(BigDecimal id) {
+    public void cancelOrder(Long id) {
 
     }
 }
