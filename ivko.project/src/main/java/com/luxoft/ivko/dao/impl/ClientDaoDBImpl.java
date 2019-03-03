@@ -12,7 +12,15 @@ public class ClientDaoDBImpl implements ClientDao {
     private static final String CLIENT_BY_ID_QUERY = "select * from client where id = '%s'";
     private static final String ALL_CLIENTS_QUERY = "select * from client";
     private static final String ERROR_MESSAGE_PATTERN = "Client not found by %s: %s";
-    private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age) values (?, ?, ?, ?, ?, ?)";
+    private static final String INSERT_CLIENT_QUERY = "insert into client (" +
+            "name, " +
+            "surname, " +
+            "email, " +
+            "password, " +
+            "phone, " +
+            "age) " +
+            "values " +
+            "(?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, phone=?, email=?%s where id=?, age=?";
     private static final String UPDATE_PASSWORD_PART = ", password=?";
     private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
@@ -68,10 +76,9 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to insert manager into DB", e);
+            throw new IllegalArgumentException("Failed to insert client into DB", e);
         }
-//        return client;
-        return false;
+        return true;
     }
 
     @Override
@@ -91,7 +98,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setLong(parameterCounter, client.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to update manager", e);
+            throw new IllegalArgumentException("Failed to update client", e);
         }
 //        return client;
         return false;
@@ -120,7 +127,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 clients.add(client);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to load manager from DB", e);
+            throw new IllegalArgumentException("Failed to load client from DB", e);
         }
         return clients;
     }
@@ -132,7 +139,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to delete manager", e);
+            throw new IllegalArgumentException("Failed to delete client", e);
         }
         return false;
     }
@@ -152,7 +159,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setAge(resultSet.getString("age"));
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Failed to load manager from DB", e);
+            throw new IllegalArgumentException("Failed to load client from DB", e);
         }
         if (client == null) {
             throw new IllegalArgumentException(errorMessage);

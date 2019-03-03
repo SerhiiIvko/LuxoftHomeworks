@@ -63,7 +63,7 @@ public class ConstantsContainer {
     public static String getStringFromConsole(BufferedReader reader) throws IOException {
         String string = "";
         while (string.equalsIgnoreCase("".trim())) {
-            if (reader.read() < 1) {
+            if (reader.read() < 0) {
                 System.out.println("input string!");
                 reader.readLine();
             } else {

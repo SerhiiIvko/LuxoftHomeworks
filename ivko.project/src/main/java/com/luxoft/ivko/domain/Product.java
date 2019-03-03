@@ -1,18 +1,28 @@
 package com.luxoft.ivko.domain;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Product {
-    private BigDecimal id;
+    private Long id;
     private String name;
     private double price;
     private String productType;
+
+    public Product(){
+    }
 
     public Product(String name, double price, String productType) {
         this.name = name;
         this.price = price;
         this.productType = productType;
+    }
+
+    public Long getId(){
+        return id;
+    }
+
+    public void setId(Long id){
+        this.id = id;
     }
 
     public String getName() {

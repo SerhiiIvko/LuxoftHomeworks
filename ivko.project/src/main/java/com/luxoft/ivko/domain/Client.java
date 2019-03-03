@@ -105,9 +105,9 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client credentials: "
+        return "Client credentials: id=" +id
                 + "name: " + name
                 + "; surname: " + surname
-                + "; phone: " + phone;
+                + "; phone: " + phone + "age= "+age;
     }
 }
