@@ -1,35 +1,37 @@
 package com.luxoft.ivko.view;
 
-import com.luxoft.ivko.appProperties.*;
+import com.luxoft.ivko.appProperties.AppUtilMethods;
+import com.luxoft.ivko.appProperties.ConstantsContainer;
+import com.luxoft.ivko.appProperties.MainMenuConstants;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Scanner;
 
 public class MainMenu {
-    private final BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+    private final Scanner scanner = new Scanner(System.in);
     private final AdminMenu adminMenu = new AdminMenu();
     private final ClientMenu clientMenu = new ClientMenu();
 
     public void showMenu() throws IOException {
         boolean isRunning = true;
         while (isRunning) {
-            ConstantsContainer.printMessage(ConstantsContainer.MAIN_MENU);
-            switch (reader.readLine()) {
+            AppUtilMethods.printMessage(MainMenuConstants.MAIN_MENU);
+            String input = scanner.nextLine();
+            switch (input) {
                 case "1":
-                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_ADMIN_MENU);
-                    adminMenu.show();
+                    AppUtilMethods.printMessage(MainMenuConstants.SHOW_ADMIN_MENU);
+                    adminMenu.showMainAdminMenu();
                     break;
                 case "2":
-                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_CLIENT_MENU);
+                    AppUtilMethods.printMessage(MainMenuConstants.SHOW_CLIENT_MENU);
                     clientMenu.show();
                     break;
                 case "0":
-                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_EXIT_MESSAGE);
+                    AppUtilMethods.printMessage(ConstantsContainer.EXIT_MESSAGE);
                     isRunning = false;
                     break;
                 default:
-                    ConstantsContainer.printMessage(ConstantsContainer.SHOW_DEFAULT_ERROR_MESSAGE);
+                    AppUtilMethods.printMessage(ConstantsContainer.DEFAULT_ERROR_MESSAGE);
             }
         }
     }

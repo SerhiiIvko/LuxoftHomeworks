@@ -8,7 +8,7 @@ public class Product {
     private double price;
     private String productType;
 
-    public Product(){
+    public Product() {
     }
 
     public Product(String name, double price, String productType) {
@@ -17,11 +17,11 @@ public class Product {
         this.productType = productType;
     }
 
-    public Long getId(){
+    public Long getId() {
         return id;
     }
 
-    public void setId(Long id){
+    public void setId(Long id) {
         this.id = id;
     }
 

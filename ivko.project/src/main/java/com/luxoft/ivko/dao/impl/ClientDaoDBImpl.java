@@ -133,7 +133,7 @@ public class ClientDaoDBImpl implements ClientDao {
     }
 
     @Override
-    public boolean removeClient(Long id) {
+    public void removeClient(Long id) {
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_CLIENT_QUERY)) {
             statement.setLong(1, id);
@@ -141,7 +141,6 @@ public class ClientDaoDBImpl implements ClientDao {
         } catch (SQLException e) {
             throw new IllegalArgumentException("Failed to delete client", e);
         }
-        return false;
     }
 
     private Client getClientByQuery(String query, String errorMessage) {
@@ -156,6 +155,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setSurname(resultSet.getString("surname"));
                 client.setEmail(resultSet.getString("email"));
                 client.setPassword(resultSet.getString("password"));
+                client.setPhone(resultSet.getString("phone"));
                 client.setAge(resultSet.getString("age"));
             }
         } catch (Exception e) {

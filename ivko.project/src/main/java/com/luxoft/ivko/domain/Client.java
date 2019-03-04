@@ -1,6 +1,5 @@
 package com.luxoft.ivko.domain;
 
-import java.math.BigDecimal;
 import java.util.Objects;
 
 public class Client {
@@ -12,7 +11,7 @@ public class Client {
     private String password;
     private String age;
 
-    public Client(){
+    public Client() {
     }
 
     public Client(String name, String surname, String phone) {
@@ -21,7 +20,7 @@ public class Client {
         this.phone = phone;
     }
 
-    public Client(String name, String surname,  String email, String password, String phone, String age) {
+    public Client(String name, String surname, String email, String password, String phone, String age) {
         this.name = name;
         this.surname = surname;
         this.email = email;
@@ -105,9 +104,10 @@ public class Client {
 
     @Override
     public String toString() {
-        return "Client credentials: id=" +id
-                + "name: " + name
+        return "Client credentials: id=" + id
+                + "; name: " + name
                 + "; surname: " + surname
-                + "; phone: " + phone + "age= "+age;
+                + "; phone: " + phone
+                + "; age= " + age;
     }
 }

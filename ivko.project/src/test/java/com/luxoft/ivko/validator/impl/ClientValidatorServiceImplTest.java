@@ -365,7 +365,7 @@ public class ClientValidatorServiceImplTest {
     @Test
     public void validateAgeIfCorrectValue() {
         //GIVEN:
-        String expectedAge = "34.5";
+        String expectedAge = "35";
         boolean isValid;
 
         //WHEN:

@@ -2,7 +2,6 @@ package com.luxoft.ivko.dao;
 
 import com.luxoft.ivko.domain.Client;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 public interface ClientDao {
@@ -38,5 +37,5 @@ public interface ClientDao {
      *
      * @param id client's id for correctly removing
      */
-    boolean removeClient(Long id);
+    void removeClient(Long id);
 }

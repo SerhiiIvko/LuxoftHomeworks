@@ -151,7 +151,7 @@ public class ProductValidatorImplTest {
     }
 
     @Test
-    public void validateAgeIfIncorrectValue() {
+    public void validatePriceIfIncorrectValue() {
         //GIVEN:
         String expectedPrice = "-50";
         boolean isValid;
@@ -164,9 +164,9 @@ public class ProductValidatorImplTest {
     }
 
     @Test
-    public void validateAgeIfCorrectValue() {
+    public void validatePriceIfCorrectValue() {
         //GIVEN:
-        String expectedPrice = "534";
+        String expectedPrice = "53.4";
         boolean isValid;
 
         //WHEN:

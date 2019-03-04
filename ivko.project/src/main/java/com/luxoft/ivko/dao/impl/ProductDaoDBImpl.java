@@ -3,8 +3,8 @@ package com.luxoft.ivko.dao.impl;
 import com.luxoft.ivko.dao.ProductDao;
 import com.luxoft.ivko.domain.Product;
 
-import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoDBImpl implements ProductDao {
@@ -22,7 +22,6 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.setString(1, product.getName());
             statement.setString(2, product.getProductType());
             statement.setDouble(3, product.getPrice());
-//            isSaved = statement.execute();
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -45,24 +44,46 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.setLong(parameterCounter, product.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to update client", e);
+            throw new IllegalArgumentException("Failed to update product", e);
         }
         return false;
     }
 
     @Override
-    public Product getProductById(BigDecimal id) {
-        return null;
+    public Product getProductById(Long id) {
+        return getProductByQuery(String.format(PRODUCT_BY_ID_QUERY, id),
+                String.format(ERROR_MESSAGE_PATTERN, "id", id));
     }
 
     @Override
     public List<Product> getAllProducts() {
-        return null;
+        List<Product> products = new ArrayList<>();
+        try (Connection connection = retrieveConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(ALL_PRODUCTS_QUERY);
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setId(resultSet.getLong("id"));
+                product.setName(resultSet.getString("name"));
+                product.setProductType(resultSet.getString("productType"));
+                product.setPrice(resultSet.getDouble("price"));
+                products.add(product);
+            }
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Failed to load product from DB", e);
+        }
+        return products;
     }
 
     @Override
-    public void removeProduct(BigDecimal id) {
-
+    public void removeProduct(Long id) {
+        try (Connection connection = retrieveConnection();
+             PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
+            statement.setLong(1, id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new IllegalArgumentException("Failed to delete product", e);
+        }
     }
 
     private Product getProductByQuery(String query, String errorMessage) {

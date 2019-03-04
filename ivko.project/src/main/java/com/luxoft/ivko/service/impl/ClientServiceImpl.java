@@ -1,5 +1,6 @@
 package com.luxoft.ivko.service.impl;
 
+import com.luxoft.ivko.appProperties.AppUtilMethods;
 import com.luxoft.ivko.appProperties.ConstantsContainer;
 import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.dao.impl.ClientDaoDBImpl;
@@ -56,14 +57,15 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteClient(Long id) {
-        ConstantsContainer.printMessage("Client deleted");
+        clientDao.removeClient(id);
+        AppUtilMethods.printMessage("Client deleted");
     }
 
     @Override
     public void showAllClients() {
         List<Client> clients = clientDao.getAllClients();
         if (clients.size() == 0) {
-            ConstantsContainer.printMessage(ConstantsContainer.EMPTY_LIST_EXCEPTION_MESSAGE);
+            AppUtilMethods.printMessage(ConstantsContainer.EMPTY_LIST_EXCEPTION_MESSAGE);
         } else {
             clients.forEach(System.out::println);
         }

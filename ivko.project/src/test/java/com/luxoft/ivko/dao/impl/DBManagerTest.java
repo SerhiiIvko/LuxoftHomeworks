@@ -1,17 +1,15 @@
 package com.luxoft.ivko.dao.impl;
 
-import org.h2.tools.DeleteDbFiles;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DBManagerTest {
     Connection connection;
+
     @BeforeClass
     public static void init() throws SQLException {
         org.h2.tools.Server.createTcpServer().start();
