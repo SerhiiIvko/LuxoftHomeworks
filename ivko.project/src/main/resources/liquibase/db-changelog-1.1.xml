@@ -36,5 +36,7 @@
             </column>
         </createTable>
     </changeSet>
-
+    <changeSet id="tag-1.1" author="ivko">
+        <tagDatabase tag="1.1"/>
+    </changeSet>
 </databaseChangeLog>

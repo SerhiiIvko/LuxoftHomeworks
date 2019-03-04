@@ -24,4 +24,7 @@
             </column>
         </createTable>
     </changeSet>
+    <changeSet id="tag-1.2" author="ivko">
+        <tagDatabase tag="1.2"/>
+    </changeSet>
 </databaseChangeLog>
