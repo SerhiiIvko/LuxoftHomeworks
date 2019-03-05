@@ -2,7 +2,6 @@ package com.luxoft.ivko.dao.impl;
 
 import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.domain.Client;
-import org.apache.commons.lang3.StringUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -12,53 +11,11 @@ public class ClientDaoDBImpl implements ClientDao {
     private static final String CLIENT_BY_ID_QUERY = "select * from client where id = '%s'";
     private static final String ALL_CLIENTS_QUERY = "select * from client";
     private static final String ERROR_MESSAGE_PATTERN = "Client not found by %s: %s";
-    private static final String INSERT_CLIENT_QUERY = "insert into client (" +
-            "name, " +
-            "surname, " +
-            "email, " +
-            "password, " +
-            "phone, " +
-            "age) " +
-            "values " +
-            "(?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, phone=?, email=?%s where id=?, age=?";
+    private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age) "
+            + "values (?, ?, ?, ?, ?, ?)";
+    private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, email=? where id=?";
     private static final String UPDATE_PASSWORD_PART = ", password=?";
     private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
-
-//    public ClientDaoDBImpl() {
-//        Connection connection = null;
-//        Statement statement = null;
-//        try {
-//            connection = DBManager.getConnection();
-//            statement = connection.createStatement();
-//            statement.executeQuery("DROP TABLE IF EXISTS client, product;");
-//            statement.executeQuery("CREATE TABLE client (\n" +
-//                    "id INT PRIMARY KEY AUTO_INCREMENT,\n" +
-//                    "name VARCHAR(28),\n" +
-//                    "surname VARCHAR(28),\n" +
-//                    "email VARCHAR(28),\n" +
-//                    "password VARCHAR(28),\n" +
-//                    "phone VARCHAR(28),\n" +
-//                    "age INT);");
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        } finally {
-//            if (connection != null) {
-//                try {
-//                    connection.close();
-//                } catch (SQLException e) {
-//                    e.getMessage();
-//                }
-//            }
-//            if (statement != null){
-//                try {
-//                    statement.close();
-//                } catch (SQLException e) {
-//                    e.getMessage();
-//                }
-//            }
-//        }
-//    }
 
     @Override
     public boolean saveClient(Client client) {
@@ -82,26 +39,21 @@ public class ClientDaoDBImpl implements ClientDao {
     }
 
     @Override
-    public boolean modifyClientCredentials(Client client) {
-        boolean needUpdatePassword = StringUtils.isNotEmpty(client.getPassword());
+    public boolean modifyClientCredentials(Client client, String newName, String newSurname, String newEmail) {
+        int isUpdated;
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(String.format(UPDATE_CLIENT_QUERY,
-                     needUpdatePassword ? UPDATE_PASSWORD_PART : ""))) {
+             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
             int parameterCounter = 1;
-            statement.setString(parameterCounter++, client.getName());
-            statement.setString(parameterCounter++, client.getSurname());
-            statement.setString(parameterCounter++, client.getEmail());
-            statement.setInt(parameterCounter++, Integer.parseInt(client.getAge()));
-            if (needUpdatePassword) {
-                statement.setString(parameterCounter++, client.getPassword());
-            }
+            statement.setString(parameterCounter++, newName);
+            statement.setString(parameterCounter++, newSurname);
+            statement.setString(parameterCounter++, newEmail);
             statement.setLong(parameterCounter, client.getId());
             statement.executeUpdate();
+            isUpdated = statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalArgumentException("Failed to update client", e);
         }
-//        return client;
-        return false;
+        return isUpdated > 0;
     }
 
     @Override
@@ -122,6 +74,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setName(resultSet.getString("name"));
                 client.setSurname(resultSet.getString("surname"));
                 client.setEmail(resultSet.getString("email"));
+                client.setPhone(resultSet.getString("phone"));
                 client.setPassword(resultSet.getString("password"));
                 client.setAge(resultSet.getString("age"));
                 clients.add(client);

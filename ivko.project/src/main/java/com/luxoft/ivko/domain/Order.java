@@ -53,7 +53,12 @@ public class Order {
     public double getAmount() {
         double amount = 0;
         if (productList != null) {
-            amount = productList.stream().mapToDouble(Product::getPrice).sum();
+            double sum = 0.0;
+            for (Product product : productList) {
+                double price = Double.parseDouble(product.getPrice());
+                sum += price;
+            }
+            amount = sum;
         }
         return amount;
     }

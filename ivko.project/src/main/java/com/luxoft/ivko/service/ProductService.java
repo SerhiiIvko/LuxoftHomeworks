@@ -12,7 +12,7 @@ public interface ProductService {
      * @param productType product type
      * @return new Product
      */
-    Product createProduct(String name, Long price, String productType);
+    Product createProduct(String name, String productType, String price);
 
     /**
      * Modify product parameters
@@ -21,7 +21,7 @@ public interface ProductService {
      * @param newName  new name for replace old name
      * @param newPrice new price for replace old price
      */
-    void modifyProduct(Product product, String newName, Long newPrice);
+    void modifyProduct(Product product, String newName, String newPrice);
 
     /**
      * Delete product

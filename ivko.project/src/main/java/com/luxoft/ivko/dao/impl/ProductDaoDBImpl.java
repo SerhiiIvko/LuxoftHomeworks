@@ -11,8 +11,8 @@ public class ProductDaoDBImpl implements ProductDao {
     private static final String PRODUCT_BY_ID_QUERY = "select * from product where id = '%s'";
     private static final String ALL_PRODUCTS_QUERY = "select * from product";
     private static final String ERROR_MESSAGE_PATTERN = "Product not found by %s: %s";
-    private static final String INSERT_PRODUCT_QUERY = "insert into product (name, type, price) values (?, ?, ?)";
-    private static final String UPDATE_PRODUCT_QUERY = "update product set name=?, type=?, price=? where id=?";
+    private static final String INSERT_PRODUCT_QUERY = "insert into product (name, productType, price) values (?, ?, ?)";
+    private static final String UPDATE_PRODUCT_QUERY = "update product set name=?, productType=?, price=? where id=?";
     private static final String DELETE_PRODUCT_QUERY = "delete from product where id=?";
 
     @Override
@@ -21,7 +21,7 @@ public class ProductDaoDBImpl implements ProductDao {
              PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getProductType());
-            statement.setDouble(3, product.getPrice());
+            statement.setDouble(3, Double.parseDouble(product.getPrice()));
             statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -40,7 +40,7 @@ public class ProductDaoDBImpl implements ProductDao {
             int parameterCounter = 1;
             statement.setString(parameterCounter++, product.getName());
             statement.setString(parameterCounter++, product.getProductType());
-            statement.setDouble(parameterCounter++, product.getPrice());
+            statement.setDouble(parameterCounter++, Double.parseDouble(product.getPrice()));
             statement.setLong(parameterCounter, product.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
@@ -66,7 +66,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 product.setId(resultSet.getLong("id"));
                 product.setName(resultSet.getString("name"));
                 product.setProductType(resultSet.getString("productType"));
-                product.setPrice(resultSet.getDouble("price"));
+                product.setPrice(resultSet.getString("price"));
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -96,7 +96,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 product.setId(resultSet.getLong("id"));
                 product.setName(resultSet.getString("name"));
                 product.setProductType(resultSet.getString("productType"));
-                product.setPrice(resultSet.getDouble("price"));
+                product.setPrice(resultSet.getString("price"));
             }
         } catch (Exception e) {
             throw new IllegalArgumentException("Failed to load product from DB", e);

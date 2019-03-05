@@ -42,6 +42,20 @@ public class DBManager {
         return h2Source;
     }
 
+    public static DataSource getTestH2DataSource() {
+        JdbcDataSource h2Source = null;
+        try {
+            Properties properties = loadProperties();
+            h2Source = new JdbcDataSource();
+            h2Source.setURL(properties.getProperty("TEST_H2_URL"));
+            h2Source.setUser(properties.getProperty("TEST_H2_USERNAME"));
+            h2Source.setPassword(properties.getProperty("TEST_H2_PASSWORD"));
+        } catch (IOException e) {
+            e.getMessage();
+        }
+        return h2Source;
+    }
+
     public static void stopDb() {
         if (DataSource != null) {
             try {

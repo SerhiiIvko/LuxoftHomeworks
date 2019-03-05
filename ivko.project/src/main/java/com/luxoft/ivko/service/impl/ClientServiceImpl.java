@@ -48,10 +48,10 @@ public class ClientServiceImpl implements ClientService {
             client.setName(name);
             client.setSurname(surname);
             client.setPhone(phone);
-            boolean res = clientDao.modifyClientCredentials(client);
-            if (res) {
-                System.out.println("Client modified successfully! " + client.toString());
-            }
+//            boolean res = clientDao.modifyClientCredentials(client);
+//            if (res) {
+//                System.out.println("Client modified successfully! " + client.toString());
+//            }
         }
     }
 

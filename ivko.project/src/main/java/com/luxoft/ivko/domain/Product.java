@@ -5,13 +5,18 @@ import java.util.Objects;
 public class Product {
     private Long id;
     private String name;
-    private double price;
+    private String price;
     private String productType;
 
     public Product() {
     }
 
-    public Product(String name, double price, String productType) {
+    public Product(String name, String price){
+        this.name = name;
+        this.price = price;
+    }
+
+    public Product(String name, String productType, String price) {
         this.name = name;
         this.price = price;
         this.productType = productType;
@@ -33,11 +38,11 @@ public class Product {
         this.name = name;
     }
 
-    public double getPrice() {
+    public String getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(String price) {
         this.price = price;
     }
 
@@ -56,7 +61,7 @@ public class Product {
         Product product = (Product) o;
         return id.equals(product.id) &&
                 getName().equals(product.getName()) &&
-                getPrice() == product.getPrice() &&
+                getPrice().equals(product.getPrice()) &&
                 getProductType().equals(product.getProductType());
     }
 

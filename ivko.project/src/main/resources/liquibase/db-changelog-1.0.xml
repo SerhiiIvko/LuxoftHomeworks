@@ -11,6 +11,60 @@
         </sql>
     </changeSet>
 
+    <changeSet id="create_client_table" author="ivko">
+        <validCheckSum>7:c21cd4b75b35b196dc8fdf82cacbb405</validCheckSum>
+        <createTable tableName="client">
+            <column name="id"
+                    type="INT"
+                    autoIncrement="true"
+                    startWith="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="surname" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="password" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="phone" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="age" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create_product_table" author="ivko">
+        <validCheckSum>7:391d9e4213facaddddbb59631acc0162</validCheckSum>
+        <createTable tableName="product">
+            <column name="id"
+                    type="INT"
+                    autoIncrement="true"
+                    startWith="1">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="productType" type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
     <changeSet id="tag-1.0" author="ivko">
         <tagDatabase tag="1.0"/>
     </changeSet>

@@ -18,7 +18,7 @@ public interface ClientDao {
      *
      * @param client object client for modifying as a data access object
      */
-    boolean modifyClientCredentials(Client client);
+    boolean modifyClientCredentials(Client client, String newName, String newSurname, String newEmail);
 
     /**
      * Get client from storage by id
