@@ -1,5 +1,8 @@
 language: java
 
+before_script:
+  - h2 -c "CREATE DATABASE test;" -U h2
+
 jdk: oraclejdk8
 
 branches:
