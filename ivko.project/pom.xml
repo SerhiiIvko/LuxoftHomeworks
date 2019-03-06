@@ -80,7 +80,7 @@
                     <execution>
                         <phase>process-resources</phase>
                         <goals>
-                            <goal>update</goal>
+                            <goal>clearCheckSums</goal>
                         </goals>
                     </execution>
                 </executions>
