@@ -1,0 +1,8 @@
+language: java
+jdk: oraclejdk8
+branches:
+  only:
+    - master
+    - project-start
+sudo: false
+script: mvn clean install

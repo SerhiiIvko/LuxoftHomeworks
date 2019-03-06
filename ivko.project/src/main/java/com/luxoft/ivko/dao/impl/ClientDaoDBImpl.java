@@ -14,7 +14,6 @@ public class ClientDaoDBImpl implements ClientDao {
     private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age) "
             + "values (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, email=? where id=?";
-    private static final String UPDATE_PASSWORD_PART = ", password=?";
     private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
 
     @Override
