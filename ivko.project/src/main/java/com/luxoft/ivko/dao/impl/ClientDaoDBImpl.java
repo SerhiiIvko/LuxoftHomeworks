@@ -1,5 +1,6 @@
 package com.luxoft.ivko.dao.impl;
 
+import com.luxoft.ivko.appProperties.ClientMenuConstants;
 import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.domain.Client;
 
@@ -32,7 +33,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to insert client into DB", e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_INSERT_CLIENT_INTO_DB, e);
         }
         return true;
     }
@@ -50,7 +51,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.executeUpdate();
             isUpdated = statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to update client", e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
         return isUpdated > 0;
     }
@@ -79,7 +80,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 clients.add(client);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to load client from DB", e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
         }
         return clients;
     }
@@ -91,7 +92,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to delete client", e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_DELETE_CLIENT, e);
         }
     }
 
@@ -111,7 +112,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setAge(resultSet.getString("age"));
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Failed to load client from DB", e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
         }
         if (client == null) {
             throw new IllegalArgumentException(errorMessage);

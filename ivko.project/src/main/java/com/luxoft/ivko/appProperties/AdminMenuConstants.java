@@ -39,4 +39,8 @@ public class AdminMenuConstants {
     public static final String INPUT_PRODUCT_SURNAME_MESSAGE = "Input product type";
     public static final String INPUT_PRODUCT_EMAIL_MESSAGE = "Input product price";
     public static final String SHOW_ORDER_BY_CLIENT_ID_MESSAGE = "Show order by client ID. \nInput client ID:\n";
+    public static final String FAILED_TO_LOAD_PRODUCT_FROM_DB = "Failed to load product from DB";
+    public static final String FAILED_TO_INSERT_PRODUCT_INTO_DB = "Failed to insert product into DB";
+    public static final String FAILED_TO_UPDATE_PRODUCT = "Failed to update product";
+    public static final String FAILED_TO_DELETE_PRODUCT = "Failed to delete product";
 }

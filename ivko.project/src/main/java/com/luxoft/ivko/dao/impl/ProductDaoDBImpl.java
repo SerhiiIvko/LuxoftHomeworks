@@ -1,5 +1,6 @@
 package com.luxoft.ivko.dao.impl;
 
+import com.luxoft.ivko.appProperties.AdminMenuConstants;
 import com.luxoft.ivko.dao.ProductDao;
 import com.luxoft.ivko.domain.Product;
 
@@ -28,9 +29,9 @@ public class ProductDaoDBImpl implements ProductDao {
                 product.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to insert product into DB", e);
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_INSERT_PRODUCT_INTO_DB, e);
         }
-        return false;
+        return true;
     }
 
     @Override
@@ -44,7 +45,7 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.setLong(parameterCounter, product.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to update product", e);
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_UPDATE_PRODUCT, e);
         }
         return false;
     }
@@ -70,7 +71,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 products.add(product);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to load product from DB", e);
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
         }
         return products;
     }
@@ -82,7 +83,7 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException("Failed to delete product", e);
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_DELETE_PRODUCT, e);
         }
     }
 
@@ -99,7 +100,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 product.setPrice(resultSet.getString("price"));
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException("Failed to load product from DB", e);
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
         }
         if (product == null) {
             throw new IllegalArgumentException(errorMessage);

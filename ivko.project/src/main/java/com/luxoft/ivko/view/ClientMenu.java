@@ -7,9 +7,7 @@ import com.luxoft.ivko.domain.Client;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.Scanner;
 
 public class ClientMenu {
@@ -37,7 +35,7 @@ public class ClientMenu {
                     AppUtilMethods.printMessage(ClientMenuConstants.ADD_PRODUCT_MESSAGE);
                     break;
                 case "5":
-                    AppUtilMethods.printMessage(ClientMenuConstants.REMOVE_PRODUCT_MESSAGE);
+                    AppUtilMethods.printMessage(ClientMenuConstants.FAILED_TO_DELETE_CLIENT);
                     break;
                 case "6":
                     AppUtilMethods.printMessage(ClientMenuConstants.ORDER_MANIPULATION_MENU);

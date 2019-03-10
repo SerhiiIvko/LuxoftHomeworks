@@ -32,4 +32,9 @@ public class ClientMenuConstants {
     public static final String SHOW_ALL_PRODUCTS = AdminMenuConstants.SHOW_ALL_PRODUCTS;
     public static final String ADD_PRODUCT_MESSAGE = "Add new product into basket:";
     public static final String REMOVE_PRODUCT_MESSAGE = "Remove product from basket, input product ID:";
+    public static final String FAILED_TO_LOAD_CLIENT_FROM_DB = "Failed to load client from DB";
+    public static final String FAILED_TO_INSERT_CLIENT_INTO_DB = "Failed to insert client into DB";
+    public static final String FAILED_TO_UPDATE_CLIENT = "Failed to update client";
+    public static final String FAILED_TO_DELETE_CLIENT = "Failed to delete client";
+
 }
