@@ -5,15 +5,20 @@ import com.luxoft.ivko.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
-import static org.junit.Assert.assertNotNull;
-
-import static org.mockito.Matchers.*;
+import static org.mockito.Matchers.any;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -21,9 +26,6 @@ public class ProductDaoDBImplTest {
 
     @Mock
     private DataSource dataSourceMock;
-
-    @Mock
-    private DBManager dbManagerMock = mock(DBManager.class);
 
     @Mock
     private Connection connectionMock;
@@ -35,49 +37,54 @@ public class ProductDaoDBImplTest {
     private ResultSet resultSetMock;
 
     @Mock
-    private ProductDaoDBImpl productDao;
+    private ProductDao productDao;
 
-    private Product product;
+    private Product productMock;
 
+    public ProductDaoDBImplTest(){
+    }
 
     @Before
     public void setUp() throws Exception {
-        when(new ProductDaoDBImpl()).thenReturn(productDao);
-        when(DBManager.getConnection()).thenReturn(connectionMock);
-        when(connectionMock.prepareStatement(any(String.class))).thenReturn(preparedStatementMock);
-        System.out.println(connectionMock.toString());//product creation
-        product = new Product();
-        product.setId(1L);
-        product.setName("Carrot");
-        product.setProductType("Vegetable");
-        product.setPrice("250");
+//        MockitoAnnotations.initMocks(this);
+        when(dataSourceMock.getConnection()).thenReturn(connectionMock);
+        when(connectionMock.prepareStatement(anyString())).thenReturn(preparedStatementMock);
+        productMock = new Product();
+        productMock.setId(1L);
+        productMock.setName("Carrot");
+        productMock.setProductType("Vegetable");
+        productMock.setPrice("250");
         when(resultSetMock.first()).thenReturn(true);
         when(resultSetMock.getLong(1)).thenReturn(1L);
-        when(resultSetMock.getString(2)).thenReturn(product.getName());
-        when(resultSetMock.getString(3)).thenReturn(product.getProductType());
-        when(resultSetMock.getString(4)).thenReturn(product.getPrice());
+        when(resultSetMock.getString(2)).thenReturn(productMock.getName());
+        when(resultSetMock.getString(3)).thenReturn(productMock.getProductType());
+        when(resultSetMock.getString(4)).thenReturn(productMock.getPrice());
         when(preparedStatementMock.executeQuery()).thenReturn(resultSetMock);
-        System.out.println(resultSetMock.toString());
     }
 
     @Test
     public void saveProduct() throws SQLException {
-        new ProductDaoDBImpl().saveProduct(product);
+
+        when(productDao.saveProduct(productMock)).thenReturn(true);
     }
 
     @Test
     public void updateProduct() {
+
     }
 
     @Test
     public void getProductById() {
+
     }
 
     @Test
     public void getAllProducts() {
+
     }
 
     @Test
     public void removeProduct() {
+
     }
 }
