@@ -14,7 +14,7 @@ public class ProductServiceImpl implements ProductService {
     private ProductValidatorService validator = new ProductValidatorImpl();
 
     @Override
-    public Product createProduct(String name, String productType, String price) {
+    public void createProduct(String name, String productType, String price) {
         if (!(validator.validateName(name)
                 || validator.validateType(productType)
                 || validator.validatePrice(price))) {
@@ -25,7 +25,6 @@ public class ProductServiceImpl implements ProductService {
             if (res) {
                 System.out.println("Product created successfully! " + product.toString());
             }
-            return product;
         }
     }
 

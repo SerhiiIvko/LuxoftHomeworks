@@ -61,6 +61,8 @@ public class ClientMenu {
         String password = AppUtilMethods.getStringFromConsole(scanner, ClientMenuConstants.INPUT_CLIENT_PASSWORD_MESSAGE);
         String phone = AppUtilMethods.getStringFromConsole(scanner, ClientMenuConstants.INPUT_CLIENT_PHONE_MESSAGE);
         String age = AppUtilMethods.getStringFromConsole(scanner, ClientMenuConstants.INPUT_CLIENT_AGE_MESSAGE);
-        client = clientService.createClient(name, surname, email, password, phone, age);
+        client = new Client(name, surname, email, password, phone, age);
+        clientService.createClient(client);
+
     }
 }

@@ -12,13 +12,22 @@ public class ClientDaoDBImpl implements ClientDao {
     private static final String CLIENT_BY_ID_QUERY = "select * from client where id = '%s'";
     private static final String ALL_CLIENTS_QUERY = "select * from client";
     private static final String ERROR_MESSAGE_PATTERN = "Client not found by %s: %s";
-    private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age) "
+    private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age)"
             + "values (?, ?, ?, ?, ?, ?)";
     private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, email=? where id=?";
     private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
 
+    public ClientDaoDBImpl(){
+    }
+
     @Override
-    public boolean saveClient(Client client) {
+    public Client getClientById(Long id) {
+        return getClientByQuery(String.format(CLIENT_BY_ID_QUERY, id),
+                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+    }
+
+    @Override
+    public Client saveClient(Client client) {
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_CLIENT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, client.getName());
@@ -27,7 +36,6 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setString(4, client.getPassword());
             statement.setString(5, client.getPhone());
             statement.setInt(6, Integer.parseInt(client.getAge()));
-            statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 client.setId(generatedKeys.getLong(1));
@@ -35,31 +43,25 @@ public class ClientDaoDBImpl implements ClientDao {
         } catch (SQLException e) {
             throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_INSERT_CLIENT_INTO_DB, e);
         }
-        return true;
+        return client;
     }
 
     @Override
-    public boolean modifyClientCredentials(Client client, String newName, String newSurname, String newEmail) {
+    public Client modifyClientCredentials(Client client) {
         int isUpdated;
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
             int parameterCounter = 1;
-            statement.setString(parameterCounter++, newName);
-            statement.setString(parameterCounter++, newSurname);
-            statement.setString(parameterCounter++, newEmail);
+            statement.setString(parameterCounter++, client.getName());
+            statement.setString(parameterCounter++, client.getSurname());
+            statement.setString(parameterCounter++, client.getEmail());
             statement.setLong(parameterCounter, client.getId());
             statement.executeUpdate();
             isUpdated = statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
-        return isUpdated > 0;
-    }
-
-    @Override
-    public Client getClientById(Long id) {
-        return getClientByQuery(String.format(CLIENT_BY_ID_QUERY, id),
-                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+        return client;
     }
 
     @Override

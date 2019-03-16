@@ -7,11 +7,11 @@
 <body>
 
 <div align="center">
-    <a href="/clientMenu.html">1. Clients</a>
+    <a href="/clientMenu.jsp">1. Clients</a>
     <br>
-    <a href="/productMenu.html">2. Products</a>
+    <a href="/productMenu.jsp">2. Products</a>
     <br>
-    <a href="/orderMenu.html">2. Orders</a>
+    <a href="/orderMenu.jsp">2. Orders</a>
     <br>
 </div>
 

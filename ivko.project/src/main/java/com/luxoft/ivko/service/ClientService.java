@@ -7,12 +7,9 @@ public interface ClientService {
     /**
      * Create new client in Service
      *
-     * @param name    client's name
-     * @param surname client's surname
-     * @param phone   client's phone number
-     * @return new Client
+     * @param client    client for creation
      */
-    Client createClient(String name, String password, String surname, String phone, String email, String age);
+    void createClient(Client client);
 
     /**
      * Modify client parameters

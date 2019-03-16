@@ -12,7 +12,7 @@ public interface ProductService {
      * @param productType product type
      * @return new Product
      */
-    Product createProduct(String name, String productType, String price);
+    void createProduct(String name, String productType, String price);
 
     /**
      * Modify product parameters

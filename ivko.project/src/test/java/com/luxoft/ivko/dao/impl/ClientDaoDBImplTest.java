@@ -28,7 +28,7 @@ public class ClientDaoDBImplTest {
     public void resetDb() {
         Connection connection;
         try {
-            DeleteDbFiles.execute("~", "test1", true);
+            DeleteDbFiles.execute("~", "test", true);
             connection = DBManager.getConnection();
             Statement statement = connection.createStatement();
             statement.execute("DROP TABLE if exists client");

@@ -1,5 +1,6 @@
 package com.luxoft.ivko.validator.impl;
 
+import com.luxoft.ivko.appProperties.ConstantsContainer;
 import com.luxoft.ivko.validator.ClientValidatorService;
 
 import java.util.regex.Matcher;
@@ -71,15 +72,14 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
     }
 
     private static boolean validateUserEmail(String email) {
-        String pattern = "\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
-        return (Pattern.compile(pattern).matcher(email).matches());
+//        String pattern = "\\b[\\w.%-]+@[-.\\w]+\\.[A-Za-z]{2,4}\\b";
+//        String pattern = ConstantsContainer.EMAIL_VALIDATOR_PATTERN;
+        return (Pattern.compile(ConstantsContainer.EMAIL_VALIDATOR_PATTERN).matcher(email).matches());
     }
 
     private static boolean validateUserPhone(String phone) {
-        Pattern pattern = Pattern
-                .compile("^(?:[+][0-9]{2}\\s?[0-9]{3}[-]?[0-9]{3,}|(?:[(][0-9]{3}[)]|" +
-                        "[0-9]{3})\\s*[-]?\\s*[0-9]{3}[-][0-9]{4})(?:\\s*x\\s*[0-9]+)?");
-        Matcher matcher = pattern.matcher(phone);
-        return matcher.matches();
+//        Pattern pattern = Pattern.compile(ConstantsContainer.PHONE_VALIDATOR_PATTERN);
+//        Matcher matcher = pattern.matcher(phone);
+        return (Pattern.compile(ConstantsContainer.PHONE_VALIDATOR_PATTERN).matcher(phone).matches());
     }
 }

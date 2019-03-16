@@ -4,8 +4,14 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:th="http://www.thymeleaf.org/">
+<h1>
 <f:view>
     <h:outputLabel value="Hello, world"/>
 </f:view>
+</h1>
+<h1 th:text="${greeting}">Hello!</h1>
+<input value="One" th:value="'Two'"/>
+<input type="text" name="userName" value="James Carrot" th:value="${user.name}" />
 </html>

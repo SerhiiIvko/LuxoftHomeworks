@@ -17,21 +17,16 @@ public class ClientServiceImpl implements ClientService {
     private ClientValidatorService validator = new ClientValidatorServiceImpl();
 
     @Override
-    public Client createClient(String name, String surname, String email, String password, String phone, String age) {
-        if (!(validator.validateName(name)
-                || validator.validateSurname(surname)
-                || validator.validateEmail(email)
-                || validator.validatePassword(password)
-                || validator.validatePhone(phone)
-                || validator.validateAge(age))) {
+    public void createClient(Client client) {
+        if (!(validator.validateName(client.getName())
+                || validator.validateSurname(client.getSurname())
+                || validator.validateEmail(client.getEmail())
+                || validator.validatePassword(client.getPassword())
+                || validator.validatePhone(client.getPhone())
+                || validator.validateAge(client.getAge()))) {
             throw new ValidationException(ConstantsContainer.VALIDATION_EXCEPTION_MESSAGE);
         } else {
-            Client client = new Client(name, surname, email, password, phone, age);
-            boolean res = clientDao.saveClient(client);
-            if (res) {
-                System.out.println("Client created successfully! " + client.toString());
-            }
-            return client;
+            clientDao.saveClient(client);
         }
     }
 
@@ -48,10 +43,6 @@ public class ClientServiceImpl implements ClientService {
             client.setName(name);
             client.setSurname(surname);
             client.setPhone(phone);
-//            boolean res = clientDao.modifyClientCredentials(client);
-//            if (res) {
-//                System.out.println("Client modified successfully! " + client.toString());
-//            }
         }
     }
 

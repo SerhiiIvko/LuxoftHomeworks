@@ -11,14 +11,14 @@ public interface ClientDao {
      *
      * @param client object client for saving as a data access object
      */
-    boolean saveClient(Client client);
+    Client saveClient(Client client);
 
     /**
      * Modify client credentials and update credentials in storage
      *
      * @param client object client for modifying as a data access object
      */
-    boolean modifyClientCredentials(Client client, String newName, String newSurname, String newEmail);
+    Client modifyClientCredentials(Client client);
 
     /**
      * Get client from storage by id
