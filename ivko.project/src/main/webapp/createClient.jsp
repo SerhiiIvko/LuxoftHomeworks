@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
-<body>
+<body style="background: palegreen">
 <div align="center">
     <div class="row justify-content-md-center">
         <div class="container">
@@ -57,11 +57,11 @@
                 </form>
             </div>
             <br>
-            <br>
-            <div align="center">
-                <form class="col-6" action="/menu.jsp" method="get">
-                    <button type="submit" class="btn btn-primary">Return to welcomePage</button>
-                </form>
+            <div class="row justify-content-md-center">
+                <div class="col-xs-3">
+                    <a href="/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                </div>
+                <br/>
             </div>
         </div>
     </div>

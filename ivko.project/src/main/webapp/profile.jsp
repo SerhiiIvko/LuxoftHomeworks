@@ -8,8 +8,8 @@
     <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
     <title>View client Info</title>
 </head>
-<body>
-<div>
+<body style="background: chartreuse">
+<div align="center">
     <div class="container">
         <div class="row justify-content-md-center">
             <div class="col-md-auto">
@@ -58,6 +58,13 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Save</button>
             </form>
+            <br>
+            <div class="row justify-content-md-center">
+                <div class="col-xs-3">
+                    <a href="/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                </div>
+                <br/>
+            </div>
         </div>
     </div>
 </div>
