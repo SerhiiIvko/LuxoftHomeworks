@@ -7,8 +7,9 @@ public class ClientViewDto implements Serializable {
     private Long id;
     private String name;
     private String surname;
-    private String age;
     private String email;
+    private String phone;
+    private String age;
 
     public Long getId() {
         return id;
@@ -50,6 +51,14 @@ public class ClientViewDto implements Serializable {
         this.email = email;
     }
 
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -58,12 +67,13 @@ public class ClientViewDto implements Serializable {
         return getId().equals(that.getId()) &&
                 getName().equals(that.getName()) &&
                 getSurname().equals(that.getSurname()) &&
-                getAge().equals(that.getAge()) &&
-                getEmail().equals(that.getEmail());
+                getEmail().equals(that.getEmail()) &&
+                getPhone().equals(that.getPhone()) &&
+                getAge().equals(that.getAge());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getSurname(), getAge(), getEmail());
+        return Objects.hash(getId(), getName(), getSurname(), getEmail(), getPhone(), getAge());
     }
 }
