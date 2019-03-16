@@ -14,10 +14,11 @@
         <h2 align="center">Return to welcome page</h2>
     </div>
 </div>
+<br>
 <div class="row justify-content-md-center">
-    <form class="col-6" action="/index.jsp" method="get">
+    <form class="col-6" action="clientMenu.jsp" method="get">
         <p align="center">
-            <button type="submit" class="btn btn-primary">To welcome Page</button>
+            <button type="submit" class="btn btn-primary">To client Page</button>
         </p>
     </form>
 </div>

@@ -5,10 +5,7 @@ import com.luxoft.ivko.domain.Product;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import javax.sql.DataSource;
@@ -17,9 +14,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyString;
-import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ProductDaoDBImplTest {
@@ -41,7 +37,7 @@ public class ProductDaoDBImplTest {
 
     private Product productMock;
 
-    public ProductDaoDBImplTest(){
+    public ProductDaoDBImplTest() {
     }
 
     @Before

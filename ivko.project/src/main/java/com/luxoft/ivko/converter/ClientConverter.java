@@ -8,12 +8,7 @@ public class ClientConverter {
 
     public ClientViewDto asClientDto(Client client) {
         ClientViewDto dto = new ClientViewDto();
-        dto.setId(client.getId());
-        dto.setName(client.getName());
-        dto.setSurname(client.getSurname());
-        dto.setEmail(client.getEmail());
-        dto.setPhone(client.getPhone());
-        dto.setAge(client.getAge());
+        setData(client, dto);
         return dto;
     }
 
@@ -27,5 +22,14 @@ public class ClientConverter {
         client.setPhone(createDto.getPhone());
         client.setAge(createDto.getAge());
         return client;
+    }
+
+    private void setData(Client client, ClientViewDto dto) {
+        dto.setId(client.getId());
+        dto.setName(client.getName());
+        dto.setSurname(client.getSurname());
+        dto.setEmail(client.getEmail());
+        dto.setPhone(client.getPhone());
+        dto.setAge(client.getAge());
     }
 }

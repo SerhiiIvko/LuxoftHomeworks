@@ -17,7 +17,7 @@ public class ClientDaoDBImpl implements ClientDao {
     private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, email=? where id=?";
     private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
 
-    public ClientDaoDBImpl(){
+    public ClientDaoDBImpl() {
     }
 
     @Override
@@ -36,6 +36,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setString(4, client.getPassword());
             statement.setString(5, client.getPhone());
             statement.setInt(6, Integer.parseInt(client.getAge()));
+            statement.executeUpdate();
             ResultSet generatedKeys = statement.getGeneratedKeys();
             if (generatedKeys.next()) {
                 client.setId(generatedKeys.getLong(1));
@@ -48,7 +49,6 @@ public class ClientDaoDBImpl implements ClientDao {
 
     @Override
     public Client modifyClientCredentials(Client client) {
-        int isUpdated;
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
             int parameterCounter = 1;
@@ -57,7 +57,6 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setString(parameterCounter++, client.getEmail());
             statement.setLong(parameterCounter, client.getId());
             statement.executeUpdate();
-            isUpdated = statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
@@ -72,13 +71,7 @@ public class ClientDaoDBImpl implements ClientDao {
             ResultSet resultSet = statement.executeQuery(ALL_CLIENTS_QUERY);
             while (resultSet.next()) {
                 Client client = new Client();
-                client.setId(resultSet.getLong("id"));
-                client.setName(resultSet.getString("name"));
-                client.setSurname(resultSet.getString("surname"));
-                client.setEmail(resultSet.getString("email"));
-                client.setPhone(resultSet.getString("phone"));
-                client.setPassword(resultSet.getString("password"));
-                client.setAge(resultSet.getString("age"));
+                setData(resultSet, client);
                 clients.add(client);
             }
         } catch (SQLException e) {
@@ -98,6 +91,25 @@ public class ClientDaoDBImpl implements ClientDao {
         }
     }
 
+    @Override
+    public void update(List<Client> clients) {
+        try (Connection connection = retrieveConnection();
+             PreparedStatement statement = connection.prepareStatement(String.format(UPDATE_CLIENT_QUERY, ""))) {
+            for (Client client : clients) {
+                statement.setString(1, client.getName());
+                statement.setString(2, client.getSurname());
+                statement.setString(3, client.getEmail());
+                statement.setString(4, client.getPhone());
+                statement.setString(5, client.getAge());
+                statement.setLong(6, client.getId());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_DELETE_CLIENT, e);
+        }
+    }
+
     private Client getClientByQuery(String query, String errorMessage) {
         Client client = null;
         try (Connection connection = retrieveConnection();
@@ -105,13 +117,7 @@ public class ClientDaoDBImpl implements ClientDao {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 client = new Client();
-                client.setId(resultSet.getLong("id"));
-                client.setName(resultSet.getString("name"));
-                client.setSurname(resultSet.getString("surname"));
-                client.setEmail(resultSet.getString("email"));
-                client.setPassword(resultSet.getString("password"));
-                client.setPhone(resultSet.getString("phone"));
-                client.setAge(resultSet.getString("age"));
+                setData(resultSet, client);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
@@ -124,5 +130,15 @@ public class ClientDaoDBImpl implements ClientDao {
 
     private Connection retrieveConnection() throws SQLException {
         return DBManager.getConnection();
+    }
+
+    private void setData(ResultSet resultSet, Client client) throws SQLException {
+        client.setId(resultSet.getLong("id"));
+        client.setName(resultSet.getString("name"));
+        client.setSurname(resultSet.getString("surname"));
+        client.setEmail(resultSet.getString("email"));
+        client.setPassword(resultSet.getString("password"));
+        client.setPhone(resultSet.getString("phone"));
+        client.setAge(resultSet.getString("age"));
     }
 }

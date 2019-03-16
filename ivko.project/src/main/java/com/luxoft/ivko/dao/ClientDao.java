@@ -38,4 +38,6 @@ public interface ClientDao {
      * @param id client's id for correctly removing
      */
     void removeClient(Long id);
+
+    void update(List<Client> clients);
 }

@@ -58,7 +58,7 @@ public class ErrorPageServlet extends HttpServlet {
         HttpSession session = request.getSession(true);
         session.setAttribute("title", title);
         session.setAttribute("pairs", pairs);
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/requestDetails.jsp");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/error-invalid-data.jsp");
         requestDispatcher.forward(request, response);
     }
 }

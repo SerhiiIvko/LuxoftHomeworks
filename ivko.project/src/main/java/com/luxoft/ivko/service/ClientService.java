@@ -1,6 +1,5 @@
 package com.luxoft.ivko.service;
 
-import com.luxoft.ivko.domain.Client;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import com.luxoft.ivko.web.dto.ClientViewDto;
 
@@ -43,9 +42,13 @@ public interface ClientService {
 //    void showAllClients();
 
     ClientViewDto registerClient(ClientCreateDto createDto);
+
     List<ClientViewDto> getAllClients();
+
     ClientViewDto getClientById(long id);
+
     ClientViewDto updateClient(ClientCreateDto createDto);
-    void updateClients(List<ClientCreateDto> createDtoList);
+
+        void updateClients(List<ClientCreateDto> createDtoList);
     void deleteClient(ClientCreateDto createDto);
 }

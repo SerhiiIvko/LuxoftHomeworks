@@ -64,10 +64,7 @@ public class ProductDaoDBImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery(ALL_PRODUCTS_QUERY);
             while (resultSet.next()) {
                 Product product = new Product();
-                product.setId(resultSet.getLong("id"));
-                product.setName(resultSet.getString("name"));
-                product.setProductType(resultSet.getString("productType"));
-                product.setPrice(resultSet.getString("price"));
+                setData(resultSet, product);
                 products.add(product);
             }
         } catch (SQLException e) {
@@ -94,10 +91,7 @@ public class ProductDaoDBImpl implements ProductDao {
             ResultSet resultSet = statement.executeQuery(query);
             while (resultSet.next()) {
                 product = new Product();
-                product.setId(resultSet.getLong("id"));
-                product.setName(resultSet.getString("name"));
-                product.setProductType(resultSet.getString("productType"));
-                product.setPrice(resultSet.getString("price"));
+                setData(resultSet, product);
             }
         } catch (Exception e) {
             throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
@@ -110,5 +104,12 @@ public class ProductDaoDBImpl implements ProductDao {
 
     private Connection retrieveConnection() throws SQLException {
         return DBManager.getConnection();
+    }
+
+    private void setData(ResultSet resultSet, Product product) throws SQLException {
+        product.setId(resultSet.getLong("id"));
+        product.setName(resultSet.getString("name"));
+        product.setProductType(resultSet.getString("productType"));
+        product.setPrice(resultSet.getString("price"));
     }
 }

@@ -14,11 +14,11 @@ public class Client {
     public Client() {
     }
 
-    public Client(String name, String surname, String phone) {
-        this.name = name;
-        this.surname = surname;
-        this.phone = phone;
-    }
+//    public Client(String name, String surname, String phone) {
+//        this.name = name;
+//        this.surname = surname;
+//        this.phone = phone;
+//    }
 
     public Client(String name, String surname, String email, String password, String phone, String age) {
         this.name = name;

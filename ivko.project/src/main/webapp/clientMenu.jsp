@@ -61,28 +61,32 @@
                                                 </td>
                                                 <td>
                                                     <div class="form-group" class="col-xs-2">
-                                                        <input name="name_${manager.id}" type="text" class="form-control"
+                                                        <input name="name_${manager.id}" type="text"
+                                                               class="form-control"
                                                                id="managerName"
                                                                placeholder="name" value="${manager.name}">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group" class="col-xs-2">
-                                                        <input name="surname_${manager.id}" type="text" class="form-control"
+                                                        <input name="surname_${manager.id}" type="text"
+                                                               class="form-control"
                                                                id="managerSurname" placeholder="surname"
                                                                value="${manager.surname}">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group" class="col-xs-1">
-                                                        <input name="age_${manager.id}" type="number" class="form-control"
+                                                        <input name="age_${manager.id}" type="number"
+                                                               class="form-control"
                                                                id="managerAge"
                                                                placeholder="age" value="${manager.age}">
                                                     </div>
                                                 </td>
                                                 <td>
                                                     <div class="form-group" class="col-xs-2">
-                                                        <input name="email_${manager.id}" type="email" class="form-control"
+                                                        <input name="email_${manager.id}" type="email"
+                                                               class="form-control"
                                                                id="managerEmail"
                                                                aria-describedby="emailHelp" placeholder="email"
                                                                value="${manager.email}">
@@ -96,7 +100,8 @@
                                                 </td>
                                                 <td>
                                                     <div class="col-xs-1">
-                                                        <a href="/managers?id=${manager.id}&_method=delete" type="button"
+                                                        <a href="/managers?id=${manager.id}&_method=delete"
+                                                           type="button"
                                                            class="btn btn-primary">Delete</a>
                                                     </div>
                                                 </td>

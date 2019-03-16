@@ -1,18 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Main menu</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body>
-
+<h1 align="center" style="color: #155724">Main menu. Choose action.</h1>
+<br>
 <div align="center">
-    <a href="/clientMenu.jsp">1. Clients</a>
-    <br>
-    <a href="/productMenu.jsp">2. Products</a>
-    <br>
-    <a href="/orderMenu.jsp">2. Orders</a>
-    <br>
+    <form class="col-6" action="/clients" method="get">
+        <button type="submit" class="btn btn-primary">1. Clients</button>
+    </form>
+</div>
+<br>
+<div align="center">
+    <form class="col-6" action="/productMenu.jsp" method="get">
+        <button type="submit" class="btn btn-primary">1. Products</button>
+    </form>
+</div>
+<br>
+<div align="center">
+    <form class="col-6" action="/orderMenu.jsp" method="get">
+        <button type="submit" class="btn btn-primary">1. Orders</button>
+    </form>
 </div>
 
 </body>
