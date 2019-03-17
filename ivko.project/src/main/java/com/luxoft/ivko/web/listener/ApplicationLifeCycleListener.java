@@ -6,6 +6,7 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
 public class ApplicationLifeCycleListener implements ServletContextListener {
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         DBManager.initialize(DBManager.getH2DataSource());

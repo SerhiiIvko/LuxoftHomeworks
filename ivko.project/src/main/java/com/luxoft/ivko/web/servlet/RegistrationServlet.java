@@ -25,7 +25,7 @@ public class RegistrationServlet extends HttpServlet {
         ClientViewDto client = clientService.registerClient(clientCreateDto);
         HttpSession session = req.getSession(true);
         session.setAttribute("client", client);
-        resp.sendRedirect("/show.jsp");
+        resp.sendRedirect("/showClients.jsp");
     }
 
     private ClientCreateDto extractClientFromRequest(HttpServletRequest req) {

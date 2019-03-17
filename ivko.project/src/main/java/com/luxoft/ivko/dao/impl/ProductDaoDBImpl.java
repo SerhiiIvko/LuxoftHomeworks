@@ -17,7 +17,13 @@ public class ProductDaoDBImpl implements ProductDao {
     private static final String DELETE_PRODUCT_QUERY = "delete from product where id=?";
 
     @Override
-    public boolean saveProduct(Product product) {
+    public Product getProductById(Long id) {
+        return getProductByQuery(String.format(PRODUCT_BY_ID_QUERY, id),
+                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+    }
+
+    @Override
+    public Product saveProduct(Product product) {
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, product.getName());
@@ -31,11 +37,11 @@ public class ProductDaoDBImpl implements ProductDao {
         } catch (SQLException e) {
             throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_INSERT_PRODUCT_INTO_DB, e);
         }
-        return true;
+        return product;
     }
 
     @Override
-    public boolean updateProduct(Product product) {
+    public Product updateProduct(Product product) {
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(UPDATE_PRODUCT_QUERY)) {
             int parameterCounter = 1;
@@ -47,13 +53,7 @@ public class ProductDaoDBImpl implements ProductDao {
         } catch (SQLException e) {
             throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_UPDATE_PRODUCT, e);
         }
-        return false;
-    }
-
-    @Override
-    public Product getProductById(Long id) {
-        return getProductByQuery(String.format(PRODUCT_BY_ID_QUERY, id),
-                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+        return product;
     }
 
     @Override
@@ -73,7 +73,7 @@ public class ProductDaoDBImpl implements ProductDao {
         return products;
     }
 
-    @Override
+
     public void removeProduct(Long id) {
         try (Connection connection = retrieveConnection();
              PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
@@ -81,6 +81,23 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_DELETE_PRODUCT, e);
+        }
+    }
+
+    @Override
+    public void update(List<Product> products){
+        try (Connection connection = retrieveConnection();
+             PreparedStatement statement = connection.prepareStatement(String.format(UPDATE_PRODUCT_QUERY, ""))) {
+            for (Product product : products) {
+                statement.setString(1, product.getName());
+                statement.setString(2, product.getProductType());
+                statement.setString(3, product.getPrice());
+                statement.setLong(4, product.getId());
+                statement.addBatch();
+            }
+            statement.executeBatch();
+        } catch (Exception e) {
+            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_UPDATE_PRODUCT, e);
         }
     }
 

@@ -29,7 +29,7 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
         validateClientCredentials(createDto.getName(), createDto.getSurname(), createDto.getEmail(),
                 createDto.getPassword(), createDto.getPhone(), createDto.getAge(), create);
         if (StringUtils.isEmpty(createDto.getName())) {
-            throw new ValidationException("Invalid manager name: " + createDto.getName());
+            throw new ValidationException("Invalid client name: " + createDto.getName());
         }
     }
 

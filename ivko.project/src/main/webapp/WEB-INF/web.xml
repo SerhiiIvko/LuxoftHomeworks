@@ -21,38 +21,15 @@
         <servlet-name>indexPage</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <servlet>
-        <servlet-name>showStatusServlet</servlet-name>
-        <jsp-file>/status.jsp</jsp-file>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>showStatusServlet</servlet-name>
-        <url-pattern>/status</url-pattern>
-    </servlet-mapping>
     <!--<servlet>-->
-        <!--<servlet-name>clientController</servlet-name>-->
-        <!--<servlet-class>com.luxoft.ivko.web.servlet.ClientServlet</servlet-class>-->
+        <!--<servlet-name>showStatusServlet</servlet-name>-->
+        <!--<jsp-file>/status.jsp</jsp-file>-->
     <!--</servlet>-->
     <!--<servlet-mapping>-->
-        <!--<servlet-name>clientController</servlet-name>-->
-        <!--<url-pattern>/clients</url-pattern>-->
+        <!--<servlet-name>showStatusServlet</servlet-name>-->
+        <!--<url-pattern>/status</url-pattern>-->
     <!--</servlet-mapping>-->
-    <!--<servlet>-->
-    <!--<servlet-name>indexPage</servlet-name>-->
-    <!--<jsp-file>/menu.jsp</jsp-file>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>clientcontroller</servlet-name>-->
-    <!--<url-pattern>/</url-pattern>-->
-    <!--</servlet-mapping>-->
-    <!--<servlet>-->
-    <!--<servlet-name>clientcontroller</servlet-name>-->
-    <!--<jsp-file>allClients.jsp</jsp-file>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-    <!--<servlet-name>showStatusServlet</servlet-name>-->
-    <!--<url-pattern>/status</url-pattern>-->
-    <!--</servlet-mapping>-->
+
     <session-config>
     <session-timeout>60</session-timeout>
     </session-config>
@@ -83,9 +60,9 @@
         <exception-type>java.lang.Throwable</exception-type>
         <location>/error</location>
     </error-page>
-    <!--<error-page>-->
-    <!--&lt;!&ndash; Forbidden directory listing &ndash;&gt;-->
-    <!--<error-code>500</error-code>-->
-    <!--<location>/requestDetails.jsp</location>-->
-    <!--</error-page>-->
+    <error-page>
+    <!-- Forbidden directory listing -->
+    <error-code>500</error-code>
+    <location>/menu.jsp</location>
+    </error-page>
 </web-app>

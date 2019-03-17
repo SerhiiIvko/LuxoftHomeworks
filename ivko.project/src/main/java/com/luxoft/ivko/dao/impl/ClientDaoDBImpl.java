@@ -106,7 +106,7 @@ public class ClientDaoDBImpl implements ClientDao {
             }
             statement.executeBatch();
         } catch (Exception e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_DELETE_CLIENT, e);
+            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
     }
 

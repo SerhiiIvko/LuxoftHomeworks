@@ -1,6 +1,5 @@
 package com.luxoft.ivko.web.servlet;
 
-import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.service.impl.ClientServiceImpl;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
@@ -68,7 +67,7 @@ public class ClientServlet extends HttpServlet {
         Predicate<Pair<ClientViewDto, ClientCreateDto>> isClientChanged = getIsChangedPredicate();
         List<ClientCreateDto> changedClients = allClients
                 .stream()
-                .map(manager -> new ImmutablePair<>(manager, extractClientFromRequest(req, "_" + manager.getId())))
+                .map(client -> new ImmutablePair<>(client, extractClientFromRequest(req, "_" + client.getId())))
                 .filter(isClientChanged::test)
                 .map(ImmutablePair::getRight)
                 .collect(Collectors.toList());
@@ -85,7 +84,7 @@ public class ClientServlet extends HttpServlet {
         };
         List<ClientViewDto> clients = service.getAllClients();
         session.setAttribute("clients", clients);
-        RequestDispatcher requestDispatcher = wrapper.getRequestDispatcher("/show.jsp");
+        RequestDispatcher requestDispatcher = wrapper.getRequestDispatcher("/showClients.jsp");
         requestDispatcher.forward(wrapper, resp);
     }
 

@@ -16,9 +16,9 @@
 </div>
 <br>
 <div class="row justify-content-md-center">
-    <form class="col-6" action="clientMenu.jsp" method="get">
+    <form class="col-6" action="/menu.jsp" method="get">
         <p align="center">
-            <button type="submit" class="btn btn-primary">To client Page</button>
+            <button type="submit" class="btn btn-primary">To main page</button>
         </p>
     </form>
 </div>

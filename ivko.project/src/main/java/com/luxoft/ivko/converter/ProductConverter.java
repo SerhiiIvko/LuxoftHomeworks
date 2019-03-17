@@ -16,15 +16,15 @@ public class ProductConverter {
         Product product = new Product();
         product.setId(createDto.getId());
         product.setName(createDto.getName());
-        product.setPrice(createDto.getPrice());
         product.setProductType(createDto.getProductType());
+        product.setPrice(createDto.getPrice());
         return product;
     }
 
     private void setData(Product product, ProductViewDto dto) {
         dto.setId(product.getId());
         dto.setName(product.getName());
-        dto.setPrice(product.getPrice());
         dto.setProductType(product.getProductType());
+        dto.setPrice(product.getPrice());
     }
 }

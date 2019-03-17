@@ -16,7 +16,7 @@
 </div>
 <br>
 <div align="center">
-    <form class="col-6" action="/productMenu.jsp" method="get">
+    <form class="col-6" action="/products" method="get">
         <button type="submit" class="btn btn-dark">1. Products</button>
     </form>
 </div>

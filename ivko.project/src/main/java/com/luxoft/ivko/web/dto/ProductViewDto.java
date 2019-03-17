@@ -6,8 +6,8 @@ import java.util.Objects;
 public class ProductViewDto implements Serializable {
     private Long id;
     private String name;
-    private String price;
     private String productType;
+    private String price;
 
     public Long getId() {
         return id;
@@ -48,12 +48,12 @@ public class ProductViewDto implements Serializable {
         ProductViewDto that = (ProductViewDto) o;
         return getId().equals(that.getId()) &&
                 getName().equals(that.getName()) &&
-                getPrice().equals(that.getPrice()) &&
-                getProductType().equals(that.getProductType());
+                getProductType().equals(that.getProductType()) &&
+                getPrice().equals(that.getPrice());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getPrice(), getProductType());
+        return Objects.hash(getId(), getName(), getProductType(), getPrice());
     }
 }

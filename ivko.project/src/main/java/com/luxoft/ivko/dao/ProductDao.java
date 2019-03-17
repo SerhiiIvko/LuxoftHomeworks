@@ -11,14 +11,14 @@ public interface ProductDao {
      *
      * @param product object product for saving as a data access object
      */
-    boolean saveProduct(Product product);
+    Product saveProduct(Product product);
 
     /**
      * Modify product and update data in storage
      *
      * @param product object product for modifying as a data access object
      */
-    boolean updateProduct(Product product);
+    Product updateProduct(Product product);
 
     /**
      * Get product from storage by id
@@ -38,4 +38,7 @@ public interface ProductDao {
      * @param id client's id for correctly removing
      */
     void removeProduct(Long id);
+
+
+    void update(List<Product> products);
 }

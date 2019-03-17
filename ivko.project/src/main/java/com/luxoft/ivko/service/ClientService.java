@@ -49,6 +49,7 @@ public interface ClientService {
 
     ClientViewDto updateClient(ClientCreateDto createDto);
 
-        void updateClients(List<ClientCreateDto> createDtoList);
+    void updateClients(List<ClientCreateDto> createDtoList);
+
     void deleteClient(ClientCreateDto createDto);
 }
