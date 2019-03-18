@@ -28,8 +28,8 @@ public class AddProductServlet extends HttpServlet {
 
     private ProductCreateDto extractProductFromRequest(HttpServletRequest req) {
         String name = req.getParameter("name");
-        String price = req.getParameter("price");
         String productType = req.getParameter("productType");
-        return new ProductCreateDto(name, price, productType);
+        String price = req.getParameter("price");
+        return new ProductCreateDto(name, productType, price);
     }
 }

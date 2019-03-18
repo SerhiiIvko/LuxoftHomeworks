@@ -55,36 +55,49 @@
                                                 <div class="form-group" class="col-xs-1">
                                                     <input name="id_${client.id}" type="text" class="form-control"
                                                            id="clientId"
-                                                           placeholder="id" value="${client.id}" readonly>
+                                                           placeholder="id"
+                                                           value="${client.id}" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group" class="col-xs-2">
                                                     <input name="name_${client.id}" type="text" class="form-control"
                                                            id="clientName"
-                                                           placeholder="name" value="${client.name}">
+                                                           placeholder="name"
+                                                           value="${client.name}" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group" class="col-xs-2">
                                                     <input name="surname_${client.id}" type="text" class="form-control"
-                                                           id="clientSurname" placeholder="surname"
-                                                           value="${client.surname}">
+                                                           id="clientSurname"
+                                                           placeholder="surname"
+                                                           value="${client.surname}" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group" class="col-xs-2">
                                                     <input name="email_${client.id}" type="email" class="form-control"
                                                            id="clientEmail"
-                                                           aria-describedby="emailHelp" placeholder="email"
-                                                           value="${client.email}">
+                                                           aria-describedby="emailHelp"
+                                                           placeholder="email"
+                                                           value="${client.email}" readonly>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="form-group" class="col-xs-1">
-                                                    <input name="age_${client.id}" type="number" class="form-control"
+                                                    <input name="phone_${client.id}" type="text" class="form-control"
+                                                           id="clientPhone"
+                                                           placeholder="phone"
+                                                           value="${client.phone}" readonly>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="form-group" class="col-xs-1">
+                                                    <input name="age_${client.id}" type="text" class="form-control"
                                                            id="clientAge"
-                                                           placeholder="age" value="${client.age}">
+                                                           placeholder="age"
+                                                           value="${client.age}" readonly>
                                                 </div>
                                             </td>
 
@@ -107,7 +120,6 @@
                             </form>
                         </div>
                     </div>
-                    <br/>
                     <div class="row justify-content-md-center">
                     <div class="col-xs-3">
                         <a href="/createClient.jsp?create=true" type="button" class="btn btn-primary">Add client</a>

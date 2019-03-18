@@ -15,21 +15,12 @@
     </filter-mapping>
     <servlet>
         <servlet-name>indexPage</servlet-name>
-        <jsp-file>/menu.jsp</jsp-file>
+        <jsp-file>/index.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>indexPage</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
-    <!--<servlet>-->
-        <!--<servlet-name>showStatusServlet</servlet-name>-->
-        <!--<jsp-file>/status.jsp</jsp-file>-->
-    <!--</servlet>-->
-    <!--<servlet-mapping>-->
-        <!--<servlet-name>showStatusServlet</servlet-name>-->
-        <!--<url-pattern>/status</url-pattern>-->
-    <!--</servlet-mapping>-->
-
     <session-config>
     <session-timeout>60</session-timeout>
     </session-config>
