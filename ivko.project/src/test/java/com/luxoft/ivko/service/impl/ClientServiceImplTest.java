@@ -1,9 +1,14 @@
 package com.luxoft.ivko.service.impl;
 
+import com.luxoft.ivko.dao.ClientDao;
+import com.luxoft.ivko.dao.impl.ClientDaoDBImpl;
 import com.luxoft.ivko.dao.impl.DBManager;
 import com.luxoft.ivko.domain.Client;
 import com.luxoft.ivko.service.ClientService;
+import com.luxoft.ivko.web.dto.ClientCreateDto;
+import com.luxoft.ivko.web.dto.ClientViewDto;
 import org.h2.tools.DeleteDbFiles;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -49,49 +54,52 @@ public class ClientServiceImplTest {
 
     @Test
     public void createClient() throws SQLException {
-//        //GIVEN:
-//        clientService = new ClientServiceImpl();
-//        String clientName = "Jimm";
-//        String clientSurname = "Carry";
-//        String clientEmail = "jimm@co.uk";
-//        String clientPassword = "123456789";
-//        String clientPhone = "+380954447744";
-//        String clientAge = "25";
-//
-//
-//        //WHEN:
-//        client = new Client(clientName, clientSurname, clientEmail, clientPassword, clientPhone, clientAge);
-//
-//        //THEN:
-////        clientService.createClient((Client) new Object());
-////        clientService.createClient(new Client());
-//        clientService.createClient(client);
+        //GIVEN:
+        clientService = new ClientServiceImpl();
+        String clientName = "Jimm";
+        String clientSurname = "Carry";
+        String clientEmail = "jimm@co.uk";
+        String clientPassword = "123456789";
+        String clientPhone = "+380954447744";
+        String clientAge = "25";
+
+        //WHEN:
+        ClientCreateDto clientCreateDto = new ClientCreateDto(clientName, clientSurname, clientEmail, clientPassword,
+                clientPhone, clientAge);
+
+        //THEN:
+        clientService.registerClient(clientCreateDto);
+
+        Assert.assertNotNull(clientCreateDto);
     }
 
     @Test
     public void modifyClient() {
-//        //GIVEN:
-//        clientService = new ClientServiceImpl();
-//        String clientName = "Jimm";
-//        String clientSurname = "Carry";
-//        String clientEmail = "jimm@co.uk";
-//        String clientPassword = "123456789";
-//        String clientPhone = "+380954447744";
-//        String clientAge = "25";
-//
-//
-//        //WHEN:
-//        String newClientName = "John";
-//        String newClientSurname = "Snow";
-//        String newClientEmail = "snow@co.uk";
-//        String newClientPassword = "123456780";
-//        String newClientPhone = "+380954447755";
-//        String newClientAge = "45";
-//        client = new Client(clientName, clientSurname, clientEmail, clientPassword, clientPhone, clientAge);
-//
-//        //THEN:
-//        clientService.modifyClient(client, newClientName, newClientSurname, newClientEmail, newClientPassword, newClientPhone, newClientAge);
-//        System.out.println(client.getAge());
+        //GIVEN:
+        clientService = new ClientServiceImpl();
+        String clientName = "Jimm";
+        String clientSurname = "Carry";
+        String clientEmail = "jimm@co.uk";
+        String clientPassword = "123456789";
+        String clientPhone = "+380954447744";
+        String clientAge = "25";
+
+
+        //WHEN:
+        String newClientName = "John";
+        String newClientSurname = "Snow";
+        String newClientEmail = "snow@co.uk";
+        String newClientPassword = "123456780";
+        String newClientPhone = "+380954447755";
+        String newClientAge = "45";
+        client = new Client(clientName, clientSurname, clientEmail, clientPassword, clientPhone, clientAge);
+        ClientCreateDto clientCreateDto = new ClientCreateDto(clientName, clientSurname, clientEmail, clientPassword,
+                clientPhone, clientAge);
+        clientService.registerClient(clientCreateDto);
+        ClientViewDto clientCreateDto1;
+
+        //THEN:
+//        clientCreateDto1=clientService.updateClient(clientCreateDto);
     }
 
     @Test

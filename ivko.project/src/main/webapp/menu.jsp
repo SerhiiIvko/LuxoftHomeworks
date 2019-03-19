@@ -21,11 +21,6 @@
     </form>
 </div>
 <br>
-<div align="center">
-    <form class="col-6" action="/orderMenu.jsp" method="get">
-        <button type="submit" class="btn btn-dark">1. Orders</button>
-    </form>
-</div>
 
 </body>
 </html>

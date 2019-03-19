@@ -15,7 +15,7 @@
     </filter-mapping>
     <servlet>
         <servlet-name>indexPage</servlet-name>
-        <jsp-file>/index.jsp</jsp-file>
+        <jsp-file>/menu.jsp</jsp-file>
     </servlet>
     <servlet-mapping>
         <servlet-name>indexPage</servlet-name>
