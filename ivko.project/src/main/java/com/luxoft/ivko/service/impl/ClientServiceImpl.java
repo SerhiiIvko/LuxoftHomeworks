@@ -9,10 +9,12 @@ import com.luxoft.ivko.validator.ClientValidatorService;
 import com.luxoft.ivko.validator.impl.ClientValidatorServiceImpl;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import com.luxoft.ivko.web.dto.ClientViewDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ClientServiceImpl implements ClientService {
     private ClientDao clientDao = new ClientDaoDBImpl();
     private ClientValidatorService validatorService = new ClientValidatorServiceImpl();

@@ -11,6 +11,7 @@
     <modules>
         <module>hw04February2019</module>
         <module>ivko.project</module>
+        <module>final-project</module>
     </modules>
     <dependencies>
         <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->

@@ -1,6 +1,6 @@
-//package com.luxoft.ivko.validator.impl;
+//package com.luxoft.com.luxoft.ivko.validator.impl;
 //
-//import com.luxoft.ivko.validator.ProductValidatorService;
+//import com.luxoft.com.luxoft.ivko.validator.ProductValidatorService;
 //import org.junit.Assert;
 //import org.junit.Test;
 //

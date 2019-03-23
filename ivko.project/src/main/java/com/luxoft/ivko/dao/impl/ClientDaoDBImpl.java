@@ -1,6 +1,6 @@
 package com.luxoft.ivko.dao.impl;
 
-import com.luxoft.ivko.appProperties.ClientMenuConstants;
+import com.luxoft.ivko.appProperties.ClientConstants;
 import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.domain.Client;
 
@@ -9,27 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ClientDaoDBImpl implements ClientDao {
-    private static final String CLIENT_BY_ID_QUERY = "select * from client where id = '%s'";
-    private static final String ALL_CLIENTS_QUERY = "select * from client";
-    private static final String ERROR_MESSAGE_PATTERN = "Client not found by %s: %s";
-    private static final String INSERT_CLIENT_QUERY = "insert into client (name, surname, email, password, phone, age)"
-            + "values (?, ?, ?, ?, ?, ?)";
-    private static final String UPDATE_CLIENT_QUERY = "update client set name=?, surname=?, email=? where id=?";
-    private static final String DELETE_CLIENT_QUERY = "delete from client where id=?";
 
     public ClientDaoDBImpl() {
     }
 
     @Override
     public Client getClientById(Long id) {
-        return getClientByQuery(String.format(CLIENT_BY_ID_QUERY, id),
-                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+        return getClientByQuery(String.format(ClientConstants.CLIENT_BY_ID_QUERY, id),
+                String.format(ClientConstants.ERROR_MESSAGE_PATTERN, "id", id));
     }
 
     @Override
     public Client saveClient(Client client) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(INSERT_CLIENT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(ClientConstants.INSERT_CLIENT_QUERY,
+                     Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, client.getName());
             statement.setString(2, client.getSurname());
             statement.setString(3, client.getEmail());
@@ -42,7 +36,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 client.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_INSERT_CLIENT_INTO_DB, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_INSERT_CLIENT_INTO_DB, e);
         }
         return client;
     }
@@ -50,7 +44,7 @@ public class ClientDaoDBImpl implements ClientDao {
     @Override
     public Client modifyClientCredentials(Client client) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_CLIENT_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(ClientConstants.UPDATE_CLIENT_QUERY)) {
             int parameterCounter = 1;
             statement.setString(parameterCounter++, client.getName());
             statement.setString(parameterCounter++, client.getSurname());
@@ -58,7 +52,7 @@ public class ClientDaoDBImpl implements ClientDao {
             statement.setLong(parameterCounter, client.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
         return client;
     }
@@ -68,14 +62,14 @@ public class ClientDaoDBImpl implements ClientDao {
         List<Client> clients = new ArrayList<>();
         try (Connection connection = retrieveConnection();
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(ALL_CLIENTS_QUERY);
+            ResultSet resultSet = statement.executeQuery(ClientConstants.ALL_CLIENTS_QUERY);
             while (resultSet.next()) {
                 Client client = new Client();
                 setData(resultSet, client);
                 clients.add(client);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
         }
         return clients;
     }
@@ -83,18 +77,18 @@ public class ClientDaoDBImpl implements ClientDao {
     @Override
     public void removeClient(Long id) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_CLIENT_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(ClientConstants.DELETE_CLIENT_QUERY)) {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_DELETE_CLIENT, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_DELETE_CLIENT, e);
         }
     }
 
     @Override
     public void update(List<Client> clients) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(String.format(UPDATE_CLIENT_QUERY, ""))) {
+             PreparedStatement statement = connection.prepareStatement(String.format(ClientConstants.UPDATE_CLIENT_QUERY, ""))) {
             for (Client client : clients) {
                 statement.setString(1, client.getName());
                 statement.setString(2, client.getSurname());
@@ -106,7 +100,7 @@ public class ClientDaoDBImpl implements ClientDao {
             }
             statement.executeBatch();
         } catch (Exception e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_UPDATE_CLIENT, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_UPDATE_CLIENT, e);
         }
     }
 
@@ -120,7 +114,7 @@ public class ClientDaoDBImpl implements ClientDao {
                 setData(resultSet, client);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException(ClientMenuConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
+            throw new IllegalArgumentException(ClientConstants.FAILED_TO_LOAD_CLIENT_FROM_DB, e);
         }
         if (client == null) {
             throw new IllegalArgumentException(errorMessage);

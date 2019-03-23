@@ -3,8 +3,11 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
     http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0" metadata-complete="false">
 
-    <display-name>ivko.project</display-name>
+    <display-name>com.luxoft.ivko.project</display-name>
 
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <filter>
         <filter-name>hiddenHttpMethodFilter</filter-name>
         <filter-class>com.luxoft.ivko.web.filter.HiddenHttpMethodFilter</filter-class>
@@ -15,7 +18,8 @@
     </filter-mapping>
     <servlet>
         <servlet-name>indexPage</servlet-name>
-        <jsp-file>/menu.jsp</jsp-file>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+        <load-on-startup>1</load-on-startup>
     </servlet>
     <servlet-mapping>
         <servlet-name>indexPage</servlet-name>
@@ -52,8 +56,7 @@
         <location>/error</location>
     </error-page>
     <error-page>
-    <!-- Forbidden directory listing -->
     <error-code>500</error-code>
-    <location>/menu.jsp</location>
+    <location>/WEB-INF/views/menu.jsp</location>
     </error-page>
 </web-app>
