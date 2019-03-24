@@ -196,7 +196,7 @@
     </dependencies>
 
     <build>
-        <finalName>com.luxoft.ivko.project</finalName>
+        <finalName>final-project</finalName>
         <plugins>
             <plugin>
                 <groupId>com.h2database</groupId>

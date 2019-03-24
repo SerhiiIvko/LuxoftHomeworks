@@ -3,7 +3,9 @@ package com.luxoft.ivko.converter;
 import com.luxoft.ivko.model.Client;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import com.luxoft.ivko.web.dto.ClientViewDto;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ClientConverter {
 
     public ClientViewDto asClientDto(Client client) {

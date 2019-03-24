@@ -33,9 +33,9 @@ public class DBManager {
         try {
             Properties properties = loadProperties();
             h2Source = new JdbcDataSource();
-            h2Source.setURL(properties.getProperty("H2_URL"));
-            h2Source.setUser(properties.getProperty("H2_USERNAME"));
-            h2Source.setPassword(properties.getProperty("H2_PASSWORD"));
+            h2Source.setURL(properties.getProperty("DB_URL"));
+            h2Source.setUser(properties.getProperty("DB_USERNAME"));
+            h2Source.setPassword(properties.getProperty("DB_PASSWORD"));
         } catch (IOException e) {
             e.getMessage();
         }

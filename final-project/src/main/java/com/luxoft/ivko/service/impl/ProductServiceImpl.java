@@ -2,13 +2,12 @@ package com.luxoft.ivko.service.impl;
 
 import com.luxoft.ivko.converter.ProductConverter;
 import com.luxoft.ivko.dao.ProductDao;
-import com.luxoft.ivko.dao.impl.ProductDaoDBImpl;
 import com.luxoft.ivko.model.Product;
 import com.luxoft.ivko.service.ProductService;
 import com.luxoft.ivko.validator.ProductValidatorService;
-import com.luxoft.ivko.validator.impl.ProductValidatorImpl;
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import com.luxoft.ivko.web.dto.ProductViewDto;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +15,18 @@ import java.util.stream.Collectors;
 
 @Service
 public class ProductServiceImpl implements ProductService {
-    private ProductDao productDao = new ProductDaoDBImpl();
-    private ProductValidatorService service = new ProductValidatorImpl();
-    private ProductConverter productConverter = new ProductConverter();
+
+    @Autowired
+    private ProductDao productDao;
+
+    @Autowired
+    private ProductValidatorService service;
+
+    @Autowired
+    private ProductConverter productConverter;
+
+    public ProductServiceImpl(){
+    }
 
     @Override
     public ProductViewDto getProductById(long id) {
@@ -30,7 +38,7 @@ public class ProductServiceImpl implements ProductService {
     public ProductViewDto registerProduct(ProductCreateDto createDto) {
         service.validateProduct(createDto, true);
         Product product = productConverter.asProduct(createDto);
-        product = productDao.saveProduct(product);
+        productDao.saveProduct(product);
         return productConverter.asProductDto(product);
     }
 
@@ -58,7 +66,7 @@ public class ProductServiceImpl implements ProductService {
                 .stream()
                 .map(productCreateDto -> productConverter.asProduct(productCreateDto))
                 .collect(Collectors.toList());
-        productDao.update(products);
+//        productDao.update(products);
     }
 
     @Override

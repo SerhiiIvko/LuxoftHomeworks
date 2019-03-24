@@ -7,7 +7,7 @@
     <title>List of products</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body style="background: lightblue">
 <div align="center">
@@ -101,11 +101,11 @@
                     <br/>
                     <div class="row justify-content-md-center">
                         <div class="col-xs-3">
-                            <a href="/WEB-INF/views/addProduct.jspct.jsp?create=true" type="button" class="btn btn-primary">Add product</a>
+                            <a href="/addProduct.jsp?create=true" type="button" class="btn btn-primary">Add product</a>
                         </div>
                         &emsp; &emsp; &emsp;
                         <div class="col-xs-3">
-                            <a href="/WEB-INF/views/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                            <a href="/menu.jsp" type="button" class="btn btn-primary">Main page</a>
                         </div>
                         <br/>
                     </div>

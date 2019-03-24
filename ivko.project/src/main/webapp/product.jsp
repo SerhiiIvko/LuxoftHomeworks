@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="libs/bootstrap-4.1.3/css/bootstrap.min.css">
     <title>View product details</title>
 </head>
 <body style="background: palevioletred">
@@ -51,7 +51,7 @@
             <br>
             <div class="row justify-content-md-center">
                 <div class="col-xs-3">
-                    <a href="/WEB-INF/views/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                    <a href="/menu.jsp" type="button" class="btn btn-primary">Main page</a>
                 </div>
                 <br/>
             </div>

@@ -1,7 +1,5 @@
 package com.luxoft.ivko.appProperties;
 
-import com.luxoft.ivko.dao.ClientDao;
-import com.luxoft.ivko.dao.impl.ClientDaoDBImpl;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -21,12 +19,12 @@ import java.util.Properties;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.luxoft.ivko")
-@PropertySource("classpath:db.properties")
+@PropertySource("classpath:application.properties")
 public class AppSpringConfig {
     private static final String PROPERTY_NAME_DATABASE_DRIVER = "DB_DRIVER_CLASS";
-    private static final String PROPERTY_NAME_DATABASE_URL = "H2_URL";
-    private static final String PROPERTY_NAME_DATABASE_USERNAME = "H2_USERNAME";
-    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "H2_PASSWORD";
+    private static final String PROPERTY_NAME_DATABASE_URL = "DB_URL";
+    private static final String PROPERTY_NAME_DATABASE_USERNAME = "DB_USERNAME";
+    private static final String PROPERTY_NAME_DATABASE_PASSWORD = "DB_PASSWORD";
 
     private static final String PROPERTY_NAME_HIBERNATE_DIALECT = "hibernate.dialect";
     private static final String PROPERTY_NAME_HIBERNATE_SHOW_SQL = "hibernate.show_sql";
@@ -83,18 +81,7 @@ public class AppSpringConfig {
 //    }
 
 //    @Bean
-//    public DataSource getDataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
-//        dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-//        dataSource.setUrl("jdbc:mysql://localhost:3306/contactdb");
-//        dataSource.setUsername("root");
-//        dataSource.setPassword("P@ssw0rd");
-//
-//        return dataSource;
+//    public ClientDao getClientDAO() {
+//        return new ClientDaoDBImpl();
 //    }
-
-    @Bean
-    public ClientDao getClientDAO() {
-        return new ClientDaoDBImpl();
-    }
 }

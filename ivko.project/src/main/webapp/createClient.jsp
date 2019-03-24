@@ -1,4 +1,4 @@
-<%@ page errorPage="error-invalid-data.jsp" %>
+<%@ page errorPage="WEB-INF/error-invalid-data.jsp" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
@@ -59,7 +59,7 @@
             <br>
             <div class="row justify-content-md-center">
                 <div class="col-xs-3">
-                    <a href="/WEB-INF/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                    <a href="/menu.jsp" type="button" class="btn btn-primary">Main page</a>
                 </div>
                 <br/>
             </div>

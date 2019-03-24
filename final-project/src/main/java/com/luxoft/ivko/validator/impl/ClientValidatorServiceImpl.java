@@ -5,11 +5,12 @@ import com.luxoft.ivko.exception.ValidationException;
 import com.luxoft.ivko.validator.ClientValidatorService;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Repository;
 
 import java.util.regex.Pattern;
 
+@Repository
 public class ClientValidatorServiceImpl implements ClientValidatorService {
-    private static final int maxInputDataLength = 28;
 
     @Override
     public void validateClientCredentials(String name, String surname, String email, String password, String phone,
@@ -34,7 +35,7 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
     }
 
     private static boolean validateName(String name) {
-        boolean correctName = !(name.trim().isEmpty() || name.length() > maxInputDataLength);
+        boolean correctName = !(name.trim().isEmpty() || name.length() > ConstantsContainer.MAX_INPUT_DATA_LENGTH);
         if (!correctName) {
             System.out.println("incorrect name " + name);
         }
@@ -42,7 +43,7 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
     }
 
     private static boolean validateSurname(String surname) {
-        boolean correctSurname = !(surname.trim().isEmpty() || surname.length() > maxInputDataLength);
+        boolean correctSurname = !(surname.trim().isEmpty() || surname.length() > ConstantsContainer.MAX_INPUT_DATA_LENGTH);
         if (!correctSurname) {
             System.out.println("incorrect surname " + surname);
         }
@@ -51,7 +52,8 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
 
     private static boolean validatePassword(String password) {
         boolean correctPasswordLength = password.length() > 6;
-        boolean correctPassword = !(password.trim().isEmpty() || password.length() > maxInputDataLength || !correctPasswordLength);
+        boolean correctPassword = !(password.trim().isEmpty() || password.length()
+                > ConstantsContainer.MAX_INPUT_DATA_LENGTH || !correctPasswordLength);
         if (correctPassword) {
             System.out.println("incorrect password");
         }
@@ -59,7 +61,7 @@ public class ClientValidatorServiceImpl implements ClientValidatorService {
     }
 
     private static boolean validateEmail(String email) {
-        boolean correctEmail = !(email.trim().isEmpty() || email.length() > maxInputDataLength);
+        boolean correctEmail = !(email.trim().isEmpty() || email.length() > ConstantsContainer.MAX_INPUT_DATA_LENGTH);
         if (!correctEmail || !validateUserEmail(email)) {
             System.out.println("incorrect email " + email);
         }

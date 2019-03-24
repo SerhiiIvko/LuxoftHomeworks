@@ -3,7 +3,9 @@ package com.luxoft.ivko.converter;
 import com.luxoft.ivko.model.Product;
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import com.luxoft.ivko.web.dto.ProductViewDto;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProductConverter {
 
     public ProductViewDto asProductDto(Product product) {

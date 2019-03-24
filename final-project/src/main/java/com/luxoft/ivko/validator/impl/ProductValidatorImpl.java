@@ -1,12 +1,14 @@
 package com.luxoft.ivko.validator.impl;
 
+import com.luxoft.ivko.appProperties.ConstantsContainer;
 import com.luxoft.ivko.exception.ValidationException;
 import com.luxoft.ivko.validator.ProductValidatorService;
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import org.apache.commons.lang3.StringUtils;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ProductValidatorImpl implements ProductValidatorService {
-    private static final int maxInputDataLength = 28;
 
     @Override
     public void validateProductData(String name, String productType, String price, boolean create) {
@@ -24,7 +26,7 @@ public class ProductValidatorImpl implements ProductValidatorService {
     }
 
     private static boolean validateName(String name) {
-        boolean correctName = !(name.trim().isEmpty() || name.length() > maxInputDataLength);
+        boolean correctName = !(name.trim().isEmpty() || name.length() > ConstantsContainer.MAX_INPUT_DATA_LENGTH);
         if (!correctName) {
             System.out.println("incorrect product name " + name);
         }
@@ -32,7 +34,7 @@ public class ProductValidatorImpl implements ProductValidatorService {
     }
 
     private static boolean validateType(String type) {
-        boolean correctType = !(type.trim().isEmpty() || type.length() > maxInputDataLength);
+        boolean correctType = !(type.trim().isEmpty() || type.length() > ConstantsContainer.MAX_INPUT_DATA_LENGTH);
         if (!correctType) {
             System.out.println("incorrect product type " + type);
         }

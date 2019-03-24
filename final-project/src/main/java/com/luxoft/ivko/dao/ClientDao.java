@@ -11,7 +11,7 @@ public interface ClientDao {
      *
      * @param client object client for saving as a data access object
      */
-    Client saveClient(Client client);
+    void saveClient(Client client);
 
     /**
      * Modify client credentials and update credentials in storage
@@ -39,5 +39,5 @@ public interface ClientDao {
      */
     void removeClient(Long id);
 
-    void update(List<Client> clients);
+//    void update(List<Client> clients);
 }
