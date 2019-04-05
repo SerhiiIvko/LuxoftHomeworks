@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>List of products</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body style="background: lightblue">
 <div align="center">
@@ -18,7 +19,7 @@
                     <h3 class="text-center">List of products</h3>
                     <hr>
                     <div align="center">
-                        <form method="get" action="/products?id=${id}">
+                        <form action=<spring:url value= "/products/search/${id}"/>>
                             <div class="col-xs-3">
                                 <input type="search" name="id">
                             </div>
@@ -81,13 +82,13 @@
                                             </td>
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="/products?id=${product.id}" type="button"
+                                                    <a href="/products/search/?id=${product.id}" type="button"
                                                        class="btn btn-primary btn-success">Show details</a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="/products?id=${product.id}&_method=delete" type="button"
+                                                    <a href="/products/delete/?id=${product.id}" type="button"
                                                        class="btn btn-primary">Delete</a>
                                                 </div>
                                             </td>
@@ -101,11 +102,11 @@
                     <br/>
                     <div class="row justify-content-md-center">
                         <div class="col-xs-3">
-                            <a href="/WEB-INF/views/addProduct.jspct.jsp?create=true" type="button" class="btn btn-primary">Add product</a>
+                            <a href="/addProduct.jsp?create=true" type="button" class="btn btn-primary">Add product</a>
                         </div>
                         &emsp; &emsp; &emsp;
                         <div class="col-xs-3">
-                            <a href="/WEB-INF/views/index.jsp" type="button" class="btn btn-primary">Main page</a>
+                            <a href="/index.jsp" type="button" class="btn btn-primary">Main page</a>
                         </div>
                         <br/>
                     </div>

@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <title>Create client</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body style="background: palegreen">
 <div align="center">
@@ -36,7 +36,6 @@
                                aria-describedby="emailHelp" placeholder="Email">
                         <small id="registrationEmailHelp" class="form-text text-muted">Input correct email</small>
                     </div>
-
                     <div class="form-group">
                         <label for="registrationPassword">Password</label>
                         <input name="password" type="password" class="form-control" id="registrationPassword"
@@ -59,7 +58,7 @@
             <br>
             <div class="row justify-content-md-center">
                 <div class="col-xs-3">
-                    <a href="/WEB-INF/menu.jsp" type="button" class="btn btn-primary">Main page</a>
+                    <a href="/index.jsp" type="button" class="btn btn-primary">Main page</a>
                 </div>
                 <br/>
             </div>

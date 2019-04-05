@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap-4.1.3/css/bootstrap.min.css">
     <title>Error!</title>
 </head>
 <body>
@@ -16,7 +16,7 @@
 </div>
 <br>
 <div class="row justify-content-md-center">
-    <form class="col-6" action="/WEB-INF/views/index.jsp" method="get">
+    <form class="col-6" action="/index.jsp" method="get">
         <p align="center">
             <button type="submit" class="btn btn-primary">To main page</button>
         </p>

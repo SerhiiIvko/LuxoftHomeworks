@@ -1,34 +1,38 @@
 package com.luxoft.ivko.controller;
 
-import com.luxoft.ivko.model.Client;
 import com.luxoft.ivko.service.ClientService;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
+import com.luxoft.ivko.web.dto.ClientViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 @Controller
 public class AddClientController {
-    @Autowired
-    public ClientService clientService;
 
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public ModelAndView showRegister(HttpServletRequest request, HttpServletResponse response) {
-        ModelAndView mav = new ModelAndView("/createClient.jsp");
-        mav.addObject("client", new Client());
-        return mav;
+    @Autowired
+    @Qualifier("clientServiceImpl")
+    private ClientService clientService;
+
+    @GetMapping(value = "/register")
+    public ModelAndView registration() {
+        return new ModelAndView("createClient");
     }
 
-    @RequestMapping(value = "/registerProcess", method = RequestMethod.POST)
-    public ModelAndView addUser(HttpServletRequest request, HttpServletResponse response,
-                                @ModelAttribute("user") ClientCreateDto client) {
-        clientService.registerClient(client);
-        return new ModelAndView("welcome", "name", client.getName());
+    @PostMapping(value = "/register")
+    public ModelAndView registerClient(String name,
+                                       String surname,
+                                       String email,
+                                       String password,
+                                       String phone,
+                                       String age) {
+        ClientCreateDto createDto = new ClientCreateDto(name, surname, email, password, phone, age);
+        ModelAndView model = new ModelAndView("redirect:/clients");
+        ClientViewDto viewDto = clientService.registerClient(createDto);
+        model.addObject(viewDto);
+        return model;
     }
 }

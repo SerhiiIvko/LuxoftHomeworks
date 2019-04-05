@@ -1,12 +1,14 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ page isELIgnored="false" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<html>
+<%@ page errorPage="error-invalid-data.jsp" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<!DOCTYPE html>
+<html lang="en">
 <head>
+    <title>Main menu</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
-    <title>View client Info</title>
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body style="background: chartreuse">
 <div align="center">
@@ -61,7 +63,7 @@
             <br>
             <div class="row justify-content-md-center">
                 <div class="col-xs-3">
-                    <a href="/WEB-INF/views/index.jsp" type="button" class="btn btn-primary">Main page</a>
+                    <a href="/index.jsp" type="button" class="btn btn-primary">Main page</a>
                 </div>
                 <br/>
             </div>

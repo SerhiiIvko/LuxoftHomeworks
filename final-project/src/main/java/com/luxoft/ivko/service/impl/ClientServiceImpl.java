@@ -8,6 +8,7 @@ import com.luxoft.ivko.validator.ClientValidatorService;
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import com.luxoft.ivko.web.dto.ClientViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +19,7 @@ import java.util.stream.Collectors;
 public class ClientServiceImpl implements ClientService {
 
     @Autowired
+    @Qualifier("clientDaoDBImpl")
     private ClientDao clientDao;
 
     @Autowired
@@ -26,7 +28,7 @@ public class ClientServiceImpl implements ClientService {
     @Autowired
     private ClientConverter clientConverter;
 
-    public ClientServiceImpl(){
+    public ClientServiceImpl() {
     }
 
     @Override
@@ -74,8 +76,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteClient(ClientCreateDto createDto) {
-        Client client = clientConverter.asClient(createDto);
-        clientDao.removeClient(client.getId());
+    @Transactional
+    public void deleteClient(long id) {
+//        Client client = clientConverter.asClient(createDto);
+        clientDao.removeClient(id);
     }
 }

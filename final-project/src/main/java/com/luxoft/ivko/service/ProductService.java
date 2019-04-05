@@ -2,46 +2,51 @@ package com.luxoft.ivko.service;
 
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import com.luxoft.ivko.web.dto.ProductViewDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ProductService {
-
-//    /**
-//     * Create new product in Service
-//     *
-//     * @param name        product name
-//     * @param price       product price
-//     * @param productType product type
-//     * @return new Product
-//     */
-//    void createProduct(String name, String productType, String price);
-//
-//    /**
-//     * Modify product parameters
-//     *
-//     * @param product  product for modifying parameters
-//     * @param newName  new name for replace old name
-//     * @param newPrice new price for replace old price
-//     */
-//    void modifyProduct(Product product, String newName, String newPrice);
-//
-//    /**
-//     * Delete product
-//     *
-//     * @param id product id for correctly deleting
-//     */
-//    void deleteProduct(Long id);
-
+    /**
+     * Register new product in Service
+     *
+     * @param createDto object ProductCreateDto for creation
+     */
     ProductViewDto registerProduct(ProductCreateDto createDto);
 
+    /**
+     * Get all products
+     * <p>
+     * return all products from storage
+     */
     List<ProductViewDto> getAllProducts();
 
+    /**
+     * Get product by id
+     *
+     * @param id product's id for return from storage
+     */
     ProductViewDto getProductById(long id);
 
+    /**
+     * Modify product parameters
+     *
+     * @param createDto object ProductCreateDto for modifying parameters
+     */
     ProductViewDto updateProduct(ProductCreateDto createDto);
 
+    /**
+     * Update all products
+     * <p>
+     * return all products from storage for transfer it's on view
+     */
     void updateProducts(List<ProductCreateDto> createDtoList);
 
-    void deleteProduct(ProductCreateDto createDto);
+    /**
+     * Delete product
+     *
+     * @param id id of product for correctly deleting
+     */
+    void deleteProduct(long id);
 }

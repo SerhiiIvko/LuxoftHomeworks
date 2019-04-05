@@ -4,6 +4,7 @@ import com.luxoft.ivko.appProperties.ConstantsContainer;
 import com.luxoft.ivko.dao.ClientDao;
 import com.luxoft.ivko.model.Client;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -11,6 +12,7 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@EnableTransactionManagement
 public class ClientDaoDBImpl implements ClientDao {
 
     @PersistenceContext

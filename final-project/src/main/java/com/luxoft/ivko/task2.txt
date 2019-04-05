@@ -1,6 +1,0 @@
-1. Make ClientDao singleton with check
-2. Make validators for email, phone number (+380(00)(000)(00)(00)), throws exception if phone number exists in DB.
-3. Admin can manage products, manage orders.
-4. Client can register, modify, make order, look list of orders, look credentials of account, cancel order.
-
-Deadline Feb 20 18:30

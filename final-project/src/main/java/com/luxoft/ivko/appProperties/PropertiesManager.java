@@ -5,7 +5,6 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class PropertiesManager {
-    private static final String PROPERTY_FILE_NAME = "application.properties";
     private static PropertiesManager Instance;
     private Properties properties;
 
@@ -24,10 +23,10 @@ public class PropertiesManager {
             properties = new Properties();
             try (InputStream stream = Thread.currentThread()
                     .getContextClassLoader()
-                    .getResourceAsStream(PROPERTY_FILE_NAME)) {
+                    .getResourceAsStream(ConstantsContainer.PROPERTY_FILE_NAME)) {
                 properties.load(stream);
             } catch (IOException e) {
-                throw new IllegalArgumentException("Failed to load file", e);
+                throw new IllegalArgumentException(ConstantsContainer.FAILED_TO_LOAD_FILE, e);
             }
         }
         return properties;

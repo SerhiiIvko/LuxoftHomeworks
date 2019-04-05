@@ -1,5 +1,0 @@
-1. Complete ClientServlet: PUT, GET, POST, DELETE;
-2. Create ProductServlet with methods;
-3. Create OrderServlet with methods.
-
-Deadline: Mar 20 18:00

@@ -1,13 +1,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ page isELIgnored="false" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
     <title>List of clients</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" type="text/css" href="../../libs/bootstrap-4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="resources/bootstrap-4.1.3/css/bootstrap.min.css">
 </head>
 <body style="background: lightblue">
 <div align="center">
@@ -18,7 +19,7 @@
                     <h3 class="text-center">List of clients</h3>
                     <hr>
                     <div align="center">
-                        <form method="get" action="/clients?id=${id}">
+                        <form action=<spring:url value= "/clients/search/${id}"/>>
                             <div class="col-xs-3">
                                 <input type="search" name="id">
                             </div>
@@ -33,7 +34,7 @@
                     <hr>
                     <div class="row justify-content-md-center">
                         <div class="col-xs-10 table-responsive justify-content-md-center">
-                            <form class="col-10 justify-content-md-center" action="/clients" method="get">
+                            <form class="col-10 justify-content-md-center" action=<spring:url value= "/clients"/>>
                                 <table class="table" id="table">
                                     <thead>
                                     <tr>
@@ -103,13 +104,13 @@
 
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="clients?id=${client.id}" type="button"
+                                                    <a href="/clients/search/?id=${client.id}" type="button"
                                                        class="btn btn-primary btn-success">Show</a>
                                                 </div>
                                             </td>
                                             <td>
                                                 <div class="col-xs-1">
-                                                    <a href="/clients?id=${client.id}&_method=delete" type="button"
+                                                    <a href="/clients/delete/?id=${client.id}" type="button"
                                                        class="btn btn-primary">Delete</a>
                                                 </div>
                                             </td>
@@ -122,11 +123,11 @@
                     </div>
                     <div class="row justify-content-md-center">
                     <div class="col-xs-3">
-                        <a href="/WEB-INF/views/createClient.jsp?create=true" type="button" class="btn btn-primary">Add client</a>
+                        <a href="/createClient.jsp?create=true" type="button" class="btn btn-primary">Add client</a>
                     </div>
                         &emsp; &emsp; &emsp;
                     <div class="col-xs-3">
-                        <a href="/WEB-INF/views/index.jsp" type="button" class="btn btn-primary">Main page</a>
+                        <a href="/index.jsp" type="button" class="btn btn-primary">Main page</a>
                     </div>
                     <br/>
                 </div>

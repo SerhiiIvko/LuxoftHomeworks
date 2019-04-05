@@ -2,9 +2,11 @@ package com.luxoft.ivko.dao;
 
 
 import com.luxoft.ivko.model.Product;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public interface ProductDao {
 
     /**
@@ -39,7 +41,4 @@ public interface ProductDao {
      * @param id client's id for correctly removing
      */
     void removeProduct(Long id);
-
-
-//    void update(List<Product> products);
 }

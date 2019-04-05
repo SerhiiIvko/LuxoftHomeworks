@@ -8,7 +8,9 @@ import com.luxoft.ivko.validator.ProductValidatorService;
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import com.luxoft.ivko.web.dto.ProductViewDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,6 +19,7 @@ import java.util.stream.Collectors;
 public class ProductServiceImpl implements ProductService {
 
     @Autowired
+    @Qualifier("productDaoDBImpl")
     private ProductDao productDao;
 
     @Autowired
@@ -25,16 +28,18 @@ public class ProductServiceImpl implements ProductService {
     @Autowired
     private ProductConverter productConverter;
 
-    public ProductServiceImpl(){
+    public ProductServiceImpl() {
     }
 
     @Override
+    @Transactional
     public ProductViewDto getProductById(long id) {
         Product product = productDao.getProductById(id);
         return productConverter.asProductDto(product);
     }
 
     @Override
+    @Transactional
     public ProductViewDto registerProduct(ProductCreateDto createDto) {
         service.validateProduct(createDto, true);
         Product product = productConverter.asProduct(createDto);
@@ -43,6 +48,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public List<ProductViewDto> getAllProducts() {
         List<Product> products = productDao.getAllProducts();
         return products
@@ -52,6 +58,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public ProductViewDto updateProduct(ProductCreateDto createDto) {
         service.validateProduct(createDto, false);
         Product product = productConverter.asProduct(createDto);
@@ -60,18 +67,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    @Transactional
     public void updateProducts(List<ProductCreateDto> createDtoList) {
         createDtoList.forEach(productCreateDto -> service.validateProduct(productCreateDto, false));
         List<Product> products = createDtoList
                 .stream()
                 .map(productCreateDto -> productConverter.asProduct(productCreateDto))
                 .collect(Collectors.toList());
-//        productDao.update(products);
     }
 
     @Override
-    public void deleteProduct(ProductCreateDto createDto) {
-        Product product = productConverter.asProduct(createDto);
-        productDao.removeProduct(product.getId());
+    @Transactional
+    public void deleteProduct(long id) {
+        productDao.removeProduct(id);
     }
 }

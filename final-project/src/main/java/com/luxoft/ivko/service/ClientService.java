@@ -2,9 +2,11 @@ package com.luxoft.ivko.service;
 
 import com.luxoft.ivko.web.dto.ClientCreateDto;
 import com.luxoft.ivko.web.dto.ClientViewDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public interface ClientService {
 
     /**
@@ -45,7 +47,7 @@ public interface ClientService {
     /**
      * Delete client
      *
-     * @param createDto object ClientCreateDto for correctly deleting
+     * @param id id of Client for correctly deleting
      */
-    void deleteClient(ClientCreateDto createDto);
+    void deleteClient(long id);
 }
