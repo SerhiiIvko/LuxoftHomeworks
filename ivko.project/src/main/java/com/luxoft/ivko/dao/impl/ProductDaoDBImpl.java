@@ -1,6 +1,6 @@
 package com.luxoft.ivko.dao.impl;
 
-import com.luxoft.ivko.appProperties.AdminMenuConstants;
+import com.luxoft.ivko.appProperties.ProductConstants;
 import com.luxoft.ivko.dao.ProductDao;
 import com.luxoft.ivko.domain.Product;
 
@@ -9,23 +9,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoDBImpl implements ProductDao {
-    private static final String PRODUCT_BY_ID_QUERY = "select * from product where id = '%s'";
-    private static final String ALL_PRODUCTS_QUERY = "select * from product";
-    private static final String ERROR_MESSAGE_PATTERN = "Product not found by %s: %s";
-    private static final String INSERT_PRODUCT_QUERY = "insert into product (name, productType, price) values (?, ?, ?)";
-    private static final String UPDATE_PRODUCT_QUERY = "update product set name=?, productType=?, price=? where id=?";
-    private static final String DELETE_PRODUCT_QUERY = "delete from product where id=?";
+
+    public ProductDaoDBImpl() {
+    }
 
     @Override
     public Product getProductById(Long id) {
-        return getProductByQuery(String.format(PRODUCT_BY_ID_QUERY, id),
-                String.format(ERROR_MESSAGE_PATTERN, "id", id));
+        return getProductByQuery(String.format(ProductConstants.PRODUCT_BY_ID_QUERY, id),
+                String.format(ProductConstants.ERROR_MESSAGE_PATTERN, "id", id));
     }
 
     @Override
     public Product saveProduct(Product product) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(INSERT_PRODUCT_QUERY, Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement statement = connection.prepareStatement(ProductConstants.INSERT_PRODUCT_QUERY,
+                     Statement.RETURN_GENERATED_KEYS)) {
             statement.setString(1, product.getName());
             statement.setString(2, product.getProductType());
             statement.setDouble(3, Double.parseDouble(product.getPrice()));
@@ -35,7 +33,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 product.setId(generatedKeys.getLong(1));
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_INSERT_PRODUCT_INTO_DB, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_INSERT_PRODUCT_INTO_DB, e);
         }
         return product;
     }
@@ -43,7 +41,7 @@ public class ProductDaoDBImpl implements ProductDao {
     @Override
     public Product updateProduct(Product product) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(UPDATE_PRODUCT_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(ProductConstants.UPDATE_PRODUCT_QUERY)) {
             int parameterCounter = 1;
             statement.setString(parameterCounter++, product.getName());
             statement.setString(parameterCounter++, product.getProductType());
@@ -51,7 +49,7 @@ public class ProductDaoDBImpl implements ProductDao {
             statement.setLong(parameterCounter, product.getId());
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_UPDATE_PRODUCT, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_UPDATE_PRODUCT, e);
         }
         return product;
     }
@@ -61,14 +59,14 @@ public class ProductDaoDBImpl implements ProductDao {
         List<Product> products = new ArrayList<>();
         try (Connection connection = retrieveConnection();
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(ALL_PRODUCTS_QUERY);
+            ResultSet resultSet = statement.executeQuery(ProductConstants.ALL_PRODUCTS_QUERY);
             while (resultSet.next()) {
                 Product product = new Product();
                 setData(resultSet, product);
                 products.add(product);
             }
         } catch (SQLException e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
         }
         return products;
     }
@@ -76,18 +74,18 @@ public class ProductDaoDBImpl implements ProductDao {
 
     public void removeProduct(Long id) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(DELETE_PRODUCT_QUERY)) {
+             PreparedStatement statement = connection.prepareStatement(ProductConstants.DELETE_PRODUCT_QUERY)) {
             statement.setLong(1, id);
             statement.executeUpdate();
         } catch (SQLException e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_DELETE_PRODUCT, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_DELETE_PRODUCT, e);
         }
     }
 
     @Override
-    public void update(List<Product> products){
+    public void update(List<Product> products) {
         try (Connection connection = retrieveConnection();
-             PreparedStatement statement = connection.prepareStatement(String.format(UPDATE_PRODUCT_QUERY, ""))) {
+             PreparedStatement statement = connection.prepareStatement(String.format(ProductConstants.UPDATE_PRODUCT_QUERY, ""))) {
             for (Product product : products) {
                 statement.setString(1, product.getName());
                 statement.setString(2, product.getProductType());
@@ -97,7 +95,7 @@ public class ProductDaoDBImpl implements ProductDao {
             }
             statement.executeBatch();
         } catch (Exception e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_UPDATE_PRODUCT, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_UPDATE_PRODUCT, e);
         }
     }
 
@@ -111,7 +109,7 @@ public class ProductDaoDBImpl implements ProductDao {
                 setData(resultSet, product);
             }
         } catch (Exception e) {
-            throw new IllegalArgumentException(AdminMenuConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
+            throw new IllegalArgumentException(ProductConstants.FAILED_TO_LOAD_PRODUCT_FROM_DB, e);
         }
         if (product == null) {
             throw new IllegalArgumentException(errorMessage);

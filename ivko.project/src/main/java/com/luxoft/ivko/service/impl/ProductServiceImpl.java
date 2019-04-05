@@ -9,10 +9,12 @@ import com.luxoft.ivko.validator.ProductValidatorService;
 import com.luxoft.ivko.validator.impl.ProductValidatorImpl;
 import com.luxoft.ivko.web.dto.ProductCreateDto;
 import com.luxoft.ivko.web.dto.ProductViewDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class ProductServiceImpl implements ProductService {
     private ProductDao productDao = new ProductDaoDBImpl();
     private ProductValidatorService service = new ProductValidatorImpl();

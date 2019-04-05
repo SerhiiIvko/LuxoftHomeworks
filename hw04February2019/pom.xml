@@ -9,4 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>hw04February2019</artifactId>
+    <packaging>war</packaging>
+
+
 </project>

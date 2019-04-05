@@ -6,19 +6,13 @@ public class Client {
     private Long id;
     private String name;
     private String surname;
-    private String phone;
     private String email;
     private String password;
+    private String phone;
     private String age;
 
     public Client() {
     }
-
-//    public Client(String name, String surname, String phone) {
-//        this.name = name;
-//        this.surname = surname;
-//        this.phone = phone;
-//    }
 
     public Client(String name, String surname, String email, String password, String phone, String age) {
         this.name = name;
